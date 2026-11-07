@@ -338,12 +338,18 @@ kbd{font:600 11px ui-monospace,SFMono-Regular,Menlo,monospace;padding:2px 7px;bo
 .gg h3{font-size:16px;font-weight:680;letter-spacing:-.01em;line-height:1.25}
 .gg .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
 .rad{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
-.rad div{padding:8px 10px;border-radius:11px;background:var(--panel-2);border:1px solid var(--line)}
+.rad>div{padding:8px 10px;border-radius:11px;background:var(--panel-2);border:1px solid var(--line)}
 .rad .l{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .rad .v{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
 .rad .v small{font-size:12px;color:var(--muted);font-weight:500}
-.gg .first{margin-top:11px;font-size:13px;color:var(--text-2);line-height:1.5}
-.gg .first b{color:var(--text)}
+.ggm{margin-top:11px}
+.ggm-h{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:750;color:var(--accent)}
+.ggm .rad{margin-top:6px}
+.rad .s{font-size:11.5px;color:var(--text-2);line-height:1.35;margin-top:3px}
+.rad .v.na{font-size:15px;color:var(--muted)}
+.ggm-l{margin:8px 0 0;padding-left:18px;font-size:12.5px;color:var(--text-2);line-height:1.45;display:flex;flex-direction:column;gap:3px}
+.ggm-l b{color:var(--text)}
+.ggm-q{margin-top:6px;font-size:11px;color:var(--muted)}
 .gg .water{margin-top:8px;font-size:12.5px;color:var(--text-2);display:flex;gap:8px;align-items:flex-start}
 .gg .water svg{width:16px;height:16px;margin-top:2px;color:var(--accent-2)}
 .disclaimer{padding:12px 14px;border-radius:13px;background:var(--gelb-soft);color:var(--text-2);font-size:12.5px;border:1px solid color-mix(in srgb,var(--gelb) 30%,transparent);margin-bottom:14px}
@@ -821,6 +827,13 @@ a.lb-k:hover{background:var(--panel-2)}
 .lb-tdot{position:absolute;width:13px;height:13px;margin-left:-6px;border-radius:50%;border:2px solid var(--panel-solid);box-shadow:0 0 0 1px rgba(0,0,0,.25);cursor:pointer;padding:0;z-index:2}
 .lb-tdot:hover,.lb-tdot:focus-visible{transform:scale(1.5);z-index:3}
 .lb-tllink{color:var(--accent);font-weight:600}
+.lb-tgrp{width:20px;height:20px;margin-left:-10px;color:#fff;font:700 11px/16px Inter,system-ui,sans-serif;text-align:center;border-width:2px}
+.lb-tlpop{position:absolute;z-index:20;width:340px;max-width:90vw;max-height:260px;overflow:auto;background:var(--panel-solid);border:1px solid var(--line-2);border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.35);padding:6px}
+.lb-tlpop-h{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:12.5px;padding:4px 6px}
+.lb-tlpop-x{font-size:18px;line-height:1;padding:0 6px;color:var(--muted)}
+.lb-tlpop a,.lb-tlpop button[data-tlev]{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;font-size:12.5px;padding:7px 8px;border-radius:6px;color:var(--text);border-top:1px solid var(--line);text-decoration:none!important}
+.lb-tlpop a:hover,.lb-tlpop button[data-tlev]:hover{background:var(--panel-2)}
+.lb-tlpop span{color:var(--accent);font-weight:700}
 .lb-tllink:hover{text-decoration:underline}
 @media(max-width:560px){.lb-tl{margin-left:96px}.lb-lane em{left:-96px;width:92px;font-size:11px}}
 .wc-card{margin-bottom:6px}
@@ -911,7 +924,7 @@ a.lb-k:hover{background:var(--panel-2)}
         <div class="lb-kpis" id="lbKpis"></div>
         <div class="lb-row">
           <article class="card lb-mapcard" id="lbMapCard">
-            <div class="card-h"><h3><svg class="ic" data-icon="map"></svg>Lagekarte</h3><div class="seg lb-mstyle" role="group" aria-label="Kartendarstellung"></div><div class="seg" id="lbSize" role="group" aria-label="Kartengröße"><button data-s="" aria-pressed="true">Standard</button><button data-s="l" aria-pressed="false">Groß</button><button data-s="full" aria-pressed="false">Vollbild</button></div></div>
+            <div class="card-h"><h3><svg class="ic" data-icon="map"></svg>Lagekarte</h3><div class="seg lb-mstyle" data-map="lb" role="group" aria-label="Kartendarstellung"></div><div class="seg" id="lbSize" role="group" aria-label="Kartengröße"><button data-s="" aria-pressed="true">Standard</button><button data-s="l" aria-pressed="false">Groß</button><button data-s="full" aria-pressed="false">Vollbild</button></div></div>
             <div class="quick" id="lbMapChips"></div>
             <div class="frame-wrap frame-box lb-mapbox" id="lbBox"><div class="fullbar"><button class="btn sm" id="lbClose"><svg class="ic" data-icon="x"></svg>Schließen</button></div><div id="lbMap" role="region" aria-label="Lagekarte mit Autobahn, Warnungen, Pegeln und Veranstaltungen"></div></div>
           </article>
@@ -943,7 +956,7 @@ a.lb-k:hover{background:var(--panel-2)}
 
           <article class="card c-wx2" id="wxMapAnchor">
             <div class="card-h"><h3><svg class="ic" data-icon="wind"></svg>Wetterkarte</h3>
-              <div class="seg lb-mstyle" role="group" aria-label="Kartendarstellung"></div><div class="seg" id="wxSize" role="group" aria-label="Kartengröße"><button data-s="" aria-pressed="true">Standard</button><button data-s="l" aria-pressed="false">Groß</button><button data-s="full" aria-pressed="false">Vollbild</button></div></div>
+              <div class="seg lb-mstyle" data-map="wx" role="group" aria-label="Kartendarstellung"></div><div class="seg" id="wxSize" role="group" aria-label="Kartengröße"><button data-s="" aria-pressed="true">Standard</button><button data-s="l" aria-pressed="false">Groß</button><button data-s="full" aria-pressed="false">Vollbild</button></div></div>
             <div class="quick" id="wxLayers" style="flex-wrap:wrap"></div>
             <div class="frame-wrap frame-box" id="wxBox">
               <div class="frame-fallback"><div>Die Wetterkarte lädt mit Kacheln des Bundesamts für Kartographie und Geodäsie und des Deutschen Wetterdienstes.</div></div>
@@ -1026,7 +1039,7 @@ a.lb-k:hover{background:var(--panel-2)}
       <section class="view" id="view-gefahrgut" aria-labelledby="h-gg">
         <div class="vhead"><div class="grow"><h2 id="h-gg">Gefahrgut-Schnellabfrage</h2>
           <p>UN-Nummer, Gefahrnummer (orangefarbene Warntafel) oder Stoffname eingeben. Gedacht für die ersten Minuten an der Einsatzstelle auf A1, A64, A602, B51, Mosel und im Hafen Trier.</p></div></div>
-        <div class="disclaimer"><b>Orientierung, keine Einsatzanweisung.</b> Abstände richten sich nach dem Notfallhandbuch ERG und gelten als Mindestwerte für die erste Streife. Den Gefahrenbereich legt die Einsatzleitung der Feuerwehr fest. Immer zuerst Notruf 112, Unfallmerkblatt und Beförderungspapiere heranziehen.</div>
+        <div class="disclaimer"><b>Orientierung, keine Einsatzanweisung.</b> Die Mindestabstände stammen aus dem Emergency Response Guidebook 2024 (ERG 2024, herausgegeben von Transport Canada, dem US-Verkehrsministerium und Mexiko), Abschnitt „Evacuation“ des jeweiligen Leitfadens sowie den Tabellen 1 und 3 für giftige Gase. Es sind Mindestwerte in alle Richtungen; wo das ERG es vorsieht, ist der Abstand in Windrichtung zu vergrößern. Den Gefahrenbereich legt die Einsatzleitung der Feuerwehr fest. Immer zuerst Notruf 112, Unfallmerkblatt und Beförderungspapiere heranziehen.</div>
         <div class="toolbar">
           <label class="search"><svg class="ic" data-icon="search"></svg><input id="ggSearch" type="search" inputmode="search" placeholder="UN-Nummer (1203), Gefahrnummer (33) oder Stoff" autocomplete="off" aria-label="Gefahrgut suchen"><kbd class="hide-m">/</kbd></label>
         </div>
@@ -1082,7 +1095,7 @@ a.lb-k:hover{background:var(--panel-2)}
         <div class="vhead"><div class="grow"><h2 id="h-cam">Webcams</h2>
           <p>Optische Vorfeldkontrolle nach Dienststelle. Aufgeführt sind nur Webcams, die öffentlich erreichbar sind. Bilder öffnen auf der Seite des Betreibers. <b>Hinweis:</b> Die Bilder kommen von den Betreibern der Webcams. Sie sind nicht immer live, manche Betreiber übertragen mit kurzer Verzögerung oder in Abständen.</p></div></div>
         <article class="card wc-card" id="wcCard">
-          <div class="card-h"><h3><svg class="ic" data-icon="camera"></svg>Webcams Großregion</h3><div class="seg lb-mstyle" role="group" aria-label="Kartendarstellung"></div><div class="seg" id="wcSize" role="group" aria-label="Kartengröße"><button data-s="" aria-pressed="true">Standard</button><button data-s="l" aria-pressed="false">Groß</button><button data-s="full" aria-pressed="false">Vollbild</button></div></div>
+          <div class="card-h"><h3><svg class="ic" data-icon="camera"></svg>Webcams Großregion</h3><div class="seg lb-mstyle" data-map="wc" role="group" aria-label="Kartendarstellung"></div><div class="seg" id="wcSize" role="group" aria-label="Kartengröße"><button data-s="" aria-pressed="true">Standard</button><button data-s="l" aria-pressed="false">Groß</button><button data-s="full" aria-pressed="false">Vollbild</button></div></div>
           <div class="card-b wc-tools"><input class="field" id="wcQ" type="search" placeholder="Ort, Webcam oder Inspektion suchen …" aria-label="Webcam suchen" autocomplete="off"><div class="chips scroll" id="wcReg" role="group" aria-label="Region"></div></div>
           <div class="frame-wrap frame-box" id="wcBox"><div class="fullbar"><button class="btn sm" id="wcClose"><svg class="ic" data-icon="x"></svg>Schließen</button></div><div id="wcMap" role="region" aria-label="Webcams in der Großregion"></div></div>
           <div class="wc-wclink"><span>Webcam-Verzeichnisse:</span><a class="btn sm primary" href="https://de.worldcam.eu/webcams/europe/germany/rhineland-palatinate" target="_blank" rel="noopener noreferrer"><svg class="ic" data-icon="external"></svg>WorldCam Rheinland-Pfalz öffnen</a><a class="btn sm" href="https://de.worldcam.eu/map?menu=0#9/49.85/6.85" target="_blank" rel="noopener noreferrer"><svg class="ic" data-icon="map"></svg>WorldCam-Karte (Raum Trier)</a><a class="btn sm" href="https://de.worldcam.eu/webcams/europe/luxembourg" target="_blank" rel="noopener noreferrer"><svg class="ic" data-icon="external"></svg>WorldCam Luxemburg</a><a class="btn sm" href="https://de.worldcam.eu/webcams/europe/germany/saarland" target="_blank" rel="noopener noreferrer"><svg class="ic" data-icon="external"></svg>WorldCam Saarland</a><a class="btn sm" href="https://www.wetteronline.de/webcams/rheinland-pfalz" target="_blank" rel="noopener noreferrer"><svg class="ic" data-icon="external"></svg>WetterOnline Webcams Rheinland-Pfalz</a></div>
@@ -1124,7 +1137,7 @@ a.lb-k:hover{background:var(--panel-2)}
       </section>
 
       <footer class="foot">
-        <b>Lagezentrum</b> nutzt ausschließlich öffentlich zugängliche Quellen. <b>Quellen:</b> Wetterdaten und Warnungen: Deutscher Wetterdienst (DWD), abgerufen über Bright Sky. Pegel: Wasserstraßen- und Schifffahrtsverwaltung des Bundes (WSV), PEGELONLINE. Verkehr: Landesbetrieb Mobilität Rheinland-Pfalz (Mobilitätsatlas). Wetterkarte: Deutscher Wetterdienst, Kartengrundlage TopPlusOpen: © <a href="https://www.bkg.bund.de" target="_blank" rel="noopener noreferrer">BKG</a> 2026 <a href="https://www.govdata.de/dl-de/by-2-0" target="_blank" rel="noopener noreferrer">dl-de/by-2-0</a>, <a href="https://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf" target="_blank" rel="noopener noreferrer">Datenquellen</a>. Polizeipresse: Presseportal (news aktuell) und die genannten Behörden. Kamerabilder: CITA Luxemburg. Standortdaten: © OpenStreetMap-Mitwirkende. Alle Angaben ohne Gewähr; im Einsatz gelten Weisungen der Leitstelle und der Führung.
+        <b>Lagezentrum</b> nutzt ausschließlich öffentlich zugängliche Quellen. <b>Quellen:</b> Wetterdaten und Warnungen: Deutscher Wetterdienst (DWD), abgerufen über Bright Sky. Pegel: Wasserstraßen- und Schifffahrtsverwaltung des Bundes (WSV), PEGELONLINE. Verkehr: Landesbetrieb Mobilität Rheinland-Pfalz (Mobilitätsatlas). Wetterkarte: Deutscher Wetterdienst, Kartengrundlage TopPlusOpen: © <a href="https://www.bkg.bund.de" target="_blank" rel="noopener noreferrer">BKG</a> 2026 <a href="https://www.govdata.de/dl-de/by-2-0" target="_blank" rel="noopener noreferrer">dl-de/by-2-0</a>, <a href="https://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf" target="_blank" rel="noopener noreferrer">Datenquellen</a>. Polizeipresse: Presseportal (news aktuell) und die genannten Behörden. Webcam-Bilder: CITA Luxemburg und die genannten Betreiber. Gefahrgut-Abstände: Emergency Response Guidebook 2024 (Transport Canada, US DOT PHMSA, SCT Mexiko). Standortdaten: © OpenStreetMap-Mitwirkende. Alle Angaben ohne Gewähr; im Einsatz gelten Weisungen der Leitstelle und der Führung.
         <br><span id="buildInfo"></span>
       </footer>
     </main>
@@ -1574,79 +1587,72 @@ const KARTE_ORTE = [
   {n:"Cattenom (F)",lat:49.4065,lon:6.2563},{n:"Mainz",lat:49.9929,lon:8.2473}
 ];
 
-/* Gefahrgut-Katalog. r = Mindestabsperrradius bei Freisetzung/Leckage (m), rb = bei Brand oder Tankbeteiligung (m).
-   Richtwerte in Anlehnung an das Notfallhandbuch ERG; die Einsatzleitung der Feuerwehr legt den Gefahrenbereich verbindlich fest. */
+/* Gefahrgut-Katalog. Mindestabstände nach Emergency Response Guidebook 2024 (ERG 2024, Transport Canada / US DOT PHMSA / SCT Mexiko),
+   je Stoff aus dem Leitfaden (g), Abschnitt EVACUATION, sowie Tabelle 1 und Tabelle 3 für giftige Gase (tih). Gegen den Originaltext geprüft am 07.11.2026.
+   r = sofort absperren in alle Richtungen (m), rb = Absperrung bei Brand (m), gr = Räumung bei großer Freisetzung prüfen (m, grw = in Windrichtung), wind = ERG sieht Vergrößerung in Windrichtung vor,
+   tih.k/s/e = [Absperrung m, Schutz in Windrichtung Tag km, Nacht km] für kleine Freisetzung / Straßentank / Kesselwagen (mäßiger Wind).
+   Die Einsatzleitung der Feuerwehr legt den Gefahrenbereich verbindlich fest. */
 const GG_KLASSEN = {
   "1":"Explosive Stoffe","2.1":"Entzündbare Gase","2.2":"Nicht entzündbare Gase","2.3":"Giftige Gase","3":"Entzündbare Flüssigkeiten",
   "4.1":"Entzündbare feste Stoffe","4.3":"Stoffe, die mit Wasser Gase entwickeln","5.1":"Entzündend wirkende Stoffe","6.1":"Giftige Stoffe",
   "6.2":"Ansteckungsgefährliche Stoffe","7":"Radioaktive Stoffe","8":"Ätzende Stoffe","9":"Verschiedene gefährliche Stoffe"
 };
-const GG_STD = {
-  fl: "Fahrzeug stoppen, Abstand wahren, Zündquellen ausschalten, nicht rauchen. Rücken zum Wind und hangaufwärts aufstellen. Notruf 112 mit UN- und Gefahrnummer absetzen. Beförderungspapiere und Unfallmerkblatt vom Fahrer holen lassen. Nicht in Lachen treten.",
-  gas: "Sofort Abstand schaffen, Windrichtung beachten, Fahrzeug nicht in Gaswolke stellen. Keine Funken: Funk und Handy erst außerhalb des Gefahrenbereichs. Notruf 112, Verkehr weiträumig umleiten. Tiefliegende Stellen und Kanäle meiden, schwere Gase sammeln sich dort.",
-  gift: "Nicht in die Wolke oder Lache gehen. Abstand, Wind im Rücken, Hangaufwärts. Notruf 112 mit Stoffangabe. Betroffene nur aus sicherer Entfernung ansprechen, Selbstschutz geht vor Rettung. Kontaminierte Personen getrennt halten und auf Feuerwehr warten.",
-  aetz: "Abstand halten, keinen Hautkontakt, Dämpfe nicht einatmen. Notruf 112. Betroffene aus dem Gefahrenbereich rufen lassen, Augen mit viel Wasser spülen lassen, sofern ohne Eigengefährdung möglich. Ablaufendes Material nicht in Richtung Kanal oder Graben lenken.",
-  ox: "Abstand halten, keine brennbaren Stoffe in die Nähe bringen, nicht mit Wasser löschen lassen ohne Feuerwehrweisung. Notruf 112. Ladung nicht berühren, Fahrer befragen, Papiere sichern.",
-  w: "Nicht mit Wasser in Kontakt bringen lassen. Notruf 112. Bei Regen Abdeckung und Abstand beachten. Keine eigenen Löschversuche.",
-  rad: "Abstand und Aufenthaltsdauer minimieren, Wind im Rücken. Notruf 112, Strahlenschutz über Leitstelle anfordern. Keine Gegenstände berühren oder entfernen. Personen aus dem Bereich bitten und Namen sichern, ohne den Bereich zu betreten.",
-  expl: "Sofort weiträumig absperren, Funk und Handy meiden bis außerhalb des Bereichs. Notruf 112. Nichts bewegen. Verkehr anhalten, Sichtschutz beachten. Kampfmittel- und Sprengstoffdienst über Leitstelle."
-};
 const GEFAHRGUT = [
-  {un:"1202",name:"Dieselkraftstoff, Heizöl (leicht)",klasse:"3",kemler:"30",r:50,rb:800,gew:"hoch",gewT:"Gewässerschädlich (hohe Gefährdung). Schon kleine Mengen verunreinigen Mosel, Saar und Zuflüsse. Ölsperre über Feuerwehr, Kanaldeckel nicht öffnen.",erst:GG_STD.fl,alias:"diesel heizöl kraftstoff tanklaster"},
-  {un:"1203",name:"Ottokraftstoff, Benzin",klasse:"3",kemler:"33",r:50,rb:800,gew:"hoch",gewT:"Sehr hohe Gefährdung. Gase heben sich nicht, sie sammeln sich in Senken und Kanälen. Zündgefahr im Umkreis.",erst:GG_STD.fl,alias:"benzin super kraftstoff tankstelle"},
-  {un:"1075",name:"Flüssiggas, LPG (Autogas)",klasse:"2.1",kemler:"23",r:100,rb:1600,gew:"gering",gewT:"Gering, verflüchtigt sich. Hauptgefahr sind Explosion und BLEVE bei Brandbeteiligung des Tanks.",erst:GG_STD.gas,alias:"lpg autogas flüssiggas gas propan butan tankwagen"},
-  {un:"1005",name:"Ammoniak, wasserfrei",klasse:"2.3",kemler:"268",r:150,rb:1600,gew:"hoch",gewT:"Sehr giftig für Wasserorganismen. Bildet mit Wasser Lauge. Ausbreitung in Gewässer unbedingt verhindern.",erst:GG_STD.gift,alias:"ammoniak nh3 kältemittel kühlanlage"},
-  {un:"1017",name:"Chlor",klasse:"2.3",kemler:"268",r:300,rb:1600,gew:"hoch",gewT:"Sehr giftig für Wasserorganismen. Schweres Gas, zieht in Senken und entlang des Moseltals.",erst:GG_STD.gift,alias:"chlor cl2 schwimmbad wasseraufbereitung"},
-  {un:"1789",name:"Salzsäure",klasse:"8",kemler:"80",r:50,rb:800,gew:"mittel",gewT:"Senkt den pH-Wert von Gewässern. Fischsterben möglich. Neutralisation nur durch Feuerwehr.",erst:GG_STD.aetz,alias:"salzsäure hcl chlorwasserstoff"},
-  {un:"1830",name:"Schwefelsäure",klasse:"8",kemler:"80",r:50,rb:800,gew:"mittel",gewT:"Starke pH-Absenkung. Reagiert heftig mit Wasser. Nicht in Kanäle oder Gräben leiten.",erst:GG_STD.aetz,alias:"schwefelsäure h2so4 batteriesäure"},
-  {un:"1263",name:"Farben, Lacke, Lösemittel (entzündbar)",klasse:"3",kemler:"33",r:50,rb:800,gew:"hoch",gewT:"Gewässergefährdend. Lösemitteldämpfe sind zündfähig, besonders in geschlossenen Räumen und Kanälen.",erst:GG_STD.fl,alias:"farbe lack lösemittel verdünnung malerbedarf"},
-  {un:"1993",name:"Entzündbare Flüssigkeit, n.a.g.",klasse:"3",kemler:"33",r:50,rb:800,gew:"hoch",gewT:"Unbekannter Inhalt. Wie Benzin behandeln, bis Stoff geklärt ist.",erst:GG_STD.fl,alias:"entzündbare flüssigkeit sammelposition"},
-  {un:"3082",name:"Umweltgefährdender Stoff, flüssig, n.a.g.",klasse:"9",kemler:"90",r:25,rb:300,gew:"hoch",gewT:"Gewässergefährdend, aber meist wenig akut gefährlich für Menschen. Eintrag in Kanalisation und Mosel verhindern.",erst:"Abstand halten, Notruf 112. Ausgelaufenes Material nicht in Gullys, Gräben oder die Mosel laufen lassen. Verkehr umleiten, Feuerwehr bindet und beseitigt.",alias:"umweltgefährdend wassergefährdend flüssigkeit"},
-  {un:"3077",name:"Umweltgefährdender Stoff, fest, n.a.g.",klasse:"9",kemler:"90",r:25,rb:300,gew:"hoch",gewT:"Gewässergefährdend. Staubentwicklung und Regen beachten, Abfluss verhindern.",erst:"Abstand halten, Notruf 112. Ladung vor Regen und Wind schützen lassen. Nicht aufnehmen, kein Wasser verwenden, Eintrag in Kanäle verhindern.",alias:"umweltgefährdend fest staub granulat"},
-  {un:"3480",name:"Lithium-Ionen-Batterien",klasse:"9",kemler:"–",r:50,rb:500,gew:"mittel",gewT:"Löschwasser wird kontaminiert (Fluor, Schwermetalle). Löschwasser auffangen lassen, nicht in die Mosel.",erst:"Thermisches Durchgehen jederzeit möglich, auch Stunden später. Abstand halten, giftiger Rauch (Flusssäure). Notruf 112, Hinweis auf Akkubrand. Elektrofahrzeuge und Akkulager nicht in Garagen oder Hallen belassen.",alias:"lithium akku batterie elektroauto e-auto ladung paket"},
-  {un:"3481",name:"Lithium-Ionen-Batterien in/mit Ausrüstung",klasse:"9",kemler:"–",r:50,rb:500,gew:"mittel",gewT:"Wie UN 3480. Kontaminiertes Löschwasser auffangen.",erst:"Wie bei UN 3480: Thermisches Durchgehen möglich, Abstand halten, Notruf 112 mit Akku-Hinweis.",alias:"lithium akku geräte"},
-  {un:"1049",name:"Wasserstoff, verdichtet",klasse:"2.1",kemler:"23",r:100,rb:1600,gew:"gering",gewT:"Keine Gewässergefährdung. Extrem leicht entzündbar, Flamme im Tageslicht kaum sichtbar.",erst:GG_STD.gas,alias:"wasserstoff h2 brennstoffzelle tankstelle"},
-  {un:"1072",name:"Sauerstoff, verdichtet",klasse:"2.2",kemler:"25",r:100,rb:800,gew:"gering",gewT:"Keine Gewässergefährdung. Fördert Brände stark, Kleidung und Öl werden zur Zündquelle.",erst:GG_STD.ox,alias:"sauerstoff o2 flasche medizinisch schweißen"},
-  {un:"1066",name:"Stickstoff, verdichtet",klasse:"2.2",kemler:"20",r:100,rb:800,gew:"gering",gewT:"Keine Gewässergefährdung. Erstickungsgefahr in Senken und geschlossenen Räumen.",erst:GG_STD.gas,alias:"stickstoff n2 flasche"},
-  {un:"1977",name:"Stickstoff, tiefgekühlt, flüssig",klasse:"2.2",kemler:"22",r:100,rb:800,gew:"gering",gewT:"Keine Gewässergefährdung. Extreme Kälte, Erfrierungen, Erstickung.",erst:GG_STD.gas,alias:"stickstoff flüssig kryo tiefgekühlt"},
-  {un:"1230",name:"Methanol",klasse:"3",kemler:"336",r:50,rb:800,gew:"mittel",gewT:"Wassermischbar, in Gewässern gesundheits- und fischschädlich. Brennt mit kaum sichtbarer Flamme.",erst:GG_STD.fl,alias:"methanol methylalkohol scheibenreiniger frostschutz"},
-  {un:"1011",name:"Butan",klasse:"2.1",kemler:"23",r:100,rb:1600,gew:"gering",gewT:"Gering. Schweres Gas, sammelt sich in Senken, Zündgefahr.",erst:GG_STD.gas,alias:"butan gas feuerzeug camping kartusche"},
-  {un:"1978",name:"Propan",klasse:"2.1",kemler:"23",r:100,rb:1600,gew:"gering",gewT:"Gering. Schweres Gas, sammelt sich in Senken, Zündgefahr.",erst:GG_STD.gas,alias:"propan gasflasche grill heizung"},
-  {un:"1428",name:"Natrium",klasse:"4.3",kemler:"X423",r:50,rb:800,gew:"mittel",gewT:"Reagiert mit Wasser unter Bildung von Natronlauge und Wasserstoff. Keine Löschversuche mit Wasser.",erst:GG_STD.w,alias:"natrium na alkalimetall"},
-  {un:"2031",name:"Salpetersäure",klasse:"8",kemler:"80",r:50,rb:800,gew:"mittel",gewT:"Starke pH-Absenkung, Stickoxide bei Reaktion. Nicht in Gewässer leiten.",erst:GG_STD.aetz,alias:"salpetersäure hno3 nitrat"},
-  {un:"2794",name:"Batterien, nass, gefüllt mit Säure",klasse:"8",kemler:"80",r:25,rb:100,gew:"mittel",gewT:"Schwefelsäure und Blei. Ausgelaufene Säure nicht in Gewässer oder Kanäle gelangen lassen.",erst:GG_STD.aetz,alias:"batterie akku autobatterie bleibatterie starterbatterie"},
-  {un:"1090",name:"Aceton",klasse:"3",kemler:"33",r:50,rb:800,gew:"mittel",gewT:"Wassermischbar, in größeren Mengen gewässerschädlich. Hochentzündlich.",erst:GG_STD.fl,alias:"aceton lösemittel nagellack"},
-  {un:"1170",name:"Ethanol, Ethylalkohol",klasse:"3",kemler:"33",r:50,rb:800,gew:"mittel",gewT:"Wassermischbar, Sauerstoffzehrung im Gewässer. Leicht entzündbar.",erst:GG_STD.fl,alias:"ethanol alkohol spiritus brennspiritus"},
-  {un:"1219",name:"Isopropanol, Isopropylalkohol",klasse:"3",kemler:"33",r:50,rb:800,gew:"mittel",gewT:"Wassermischbar, in Mengen gewässerschädlich. Leicht entzündbar.",erst:GG_STD.fl,alias:"isopropanol propanol reinigungsmittel"},
-  {un:"1114",name:"Benzol",klasse:"3",kemler:"33",r:50,rb:800,gew:"hoch",gewT:"Gewässergefährdend und krebserzeugend. Dämpfe nicht einatmen.",erst:GG_STD.fl,alias:"benzol aromat chemie"},
-  {un:"1294",name:"Toluol",klasse:"3",kemler:"33",r:50,rb:800,gew:"hoch",gewT:"Gewässergefährdend. Dämpfe betäubend, zündfähig.",erst:GG_STD.fl,alias:"toluol lösemittel"},
-  {un:"1307",name:"Xylol",klasse:"3",kemler:"30",r:50,rb:800,gew:"hoch",gewT:"Gewässergefährdend. Dämpfe betäubend, zündfähig.",erst:GG_STD.fl,alias:"xylol lösemittel"},
-  {un:"1824",name:"Natronlauge, Lösung",klasse:"8",kemler:"80",r:50,rb:300,gew:"mittel",gewT:"Hebt den pH-Wert stark an. Fischgiftig, nicht in Gewässer oder Kanäle.",erst:GG_STD.aetz,alias:"natronlauge naoh ätznatron lauge"},
-  {un:"1814",name:"Kalilauge, Lösung",klasse:"8",kemler:"80",r:50,rb:300,gew:"mittel",gewT:"Hebt den pH-Wert stark an. Fischgiftig.",erst:GG_STD.aetz,alias:"kalilauge koh ätzkali"},
-  {un:"1805",name:"Phosphorsäure",klasse:"8",kemler:"80",r:50,rb:300,gew:"mittel",gewT:"Senkt pH-Wert, nährstoffreich. Nicht in Gewässer leiten.",erst:GG_STD.aetz,alias:"phosphorsäure h3po4 rostentferner"},
-  {un:"1791",name:"Hypochlorit-Lösung (Bleichlauge)",klasse:"8",kemler:"80",r:50,rb:300,gew:"hoch",gewT:"Sehr giftig für Wasserorganismen. Entwickelt mit Säuren giftiges Chlor.",erst:GG_STD.aetz,alias:"hypochlorit bleichlauge chlorbleiche javelwasser"},
-  {un:"1760",name:"Ätzende Flüssigkeit, n.a.g.",klasse:"8",kemler:"80",r:50,rb:300,gew:"mittel",gewT:"Unbekannter Inhalt. Wie Säure oder Lauge behandeln, nicht ins Gewässer.",erst:GG_STD.aetz,alias:"ätzend flüssigkeit säure lauge sammelposition"},
-  {un:"1950",name:"Druckgaspackungen (Aerosole)",klasse:"2.1",kemler:"–",r:25,rb:300,gew:"gering",gewT:"Gering. Bei Brand Explosion einzelner Dosen mit Splitterflug.",erst:"Abstand halten, bei Brand Dosen können wie Geschosse fliegen. Notruf 112, Sichtschutz beachten, Verkehr anhalten.",alias:"aerosol spraydose druckgaspackung deo"},
-  {un:"1965",name:"Kohlenwasserstoffgasgemisch, verflüssigt, n.a.g.",klasse:"2.1",kemler:"23",r:100,rb:1600,gew:"gering",gewT:"Gering. Zündgefahr, schwere Gase in Senken.",erst:GG_STD.gas,alias:"gasgemisch kohlenwasserstoff lpg"},
-  {un:"1971",name:"Methan, Erdgas, verdichtet",klasse:"2.1",kemler:"23",r:100,rb:1600,gew:"gering",gewT:"Keine Gewässergefährdung. Leichter als Luft, steigt auf. Zündgefahr in geschlossenen Räumen.",erst:GG_STD.gas,alias:"erdgas methan cng biogas"},
-  {un:"1001",name:"Acetylen, gelöst",klasse:"2.1",kemler:"239",r:100,rb:1600,gew:"gering",gewT:"Gering. Zerfallsgefahr bei Erwärmung, Flaschen können explodieren.",erst:GG_STD.gas,alias:"acetylen autogen schweißen flasche"},
-  {un:"1013",name:"Kohlendioxid, verdichtet",klasse:"2.2",kemler:"20",r:100,rb:500,gew:"gering",gewT:"Keine Gewässergefährdung. Schwerer als Luft, Erstickungsgefahr in Senken, Kellern und Schächten.",erst:GG_STD.gas,alias:"kohlendioxid co2 flasche getränke"},
-  {un:"1006",name:"Argon, verdichtet",klasse:"2.2",kemler:"20",r:100,rb:500,gew:"gering",gewT:"Keine. Erstickungsgefahr in geschlossenen Räumen.",erst:GG_STD.gas,alias:"argon schutzgas schweißen"},
-  {un:"1046",name:"Helium, verdichtet",klasse:"2.2",kemler:"20",r:100,rb:500,gew:"gering",gewT:"Keine. Druckflaschen können bei Brand bersten.",erst:GG_STD.gas,alias:"helium ballon"},
-  {un:"1079",name:"Schwefeldioxid",klasse:"2.3",kemler:"268",r:150,rb:1600,gew:"hoch",gewT:"Giftig für Wasserorganismen, bildet mit Wasser schweflige Säure.",erst:GG_STD.gift,alias:"schwefeldioxid so2 kältemittel"},
-  {un:"1040",name:"Ethylenoxid",klasse:"2.3",kemler:"239",r:150,rb:1600,gew:"mittel",gewT:"Wassermischbar. Giftig, krebserzeugend, extrem entzündbar.",erst:GG_STD.gift,alias:"ethylenoxid sterilisation"},
-  {un:"1086",name:"Vinylchlorid, stabilisiert",klasse:"2.1",kemler:"239",r:150,rb:1600,gew:"mittel",gewT:"Gesundheitsschädlich, krebserzeugend, entzündbar.",erst:GG_STD.gas,alias:"vinylchlorid pvc kunststoff"},
-  {un:"1942",name:"Ammoniumnitrat",klasse:"5.1",kemler:"50",r:100,rb:800,gew:"mittel",gewT:"Nährstoffeintrag, schädlich für Gewässer. Bei Brand giftige Gase, Explosionsgefahr bei Einschluss.",erst:GG_STD.ox,alias:"ammoniumnitrat dünger düngemittel kalkammonsalpeter"},
-  {un:"2014",name:"Wasserstoffperoxid, wässrige Lösung (20–60 %)",klasse:"5.1",kemler:"58",r:50,rb:800,gew:"mittel",gewT:"Gewässerschädlich in Konzentration. Zersetzt sich unter Sauerstoffbildung, Brandförderung.",erst:GG_STD.ox,alias:"wasserstoffperoxid h2o2 bleichmittel"},
-  {un:"2672",name:"Ammoniaklösung",klasse:"8",kemler:"80",r:50,rb:300,gew:"hoch",gewT:"Sehr giftig für Wasserorganismen.",erst:GG_STD.aetz,alias:"ammoniaklösung salmiakgeist reinigung"},
-  {un:"3257",name:"Erhitzter flüssiger Stoff, n.a.g. (z. B. Bitumen, Asphalt)",klasse:"9",kemler:"99",r:25,rb:300,gew:"mittel",gewT:"Verunreinigt Gewässer und Böden. Verbrennungsgefahr bei Kontakt.",erst:"Abstand halten, Verbrennungsgefahr bei Kontakt (über 100 Grad). Notruf 112, Verkehr umleiten. Nicht mit Wasser kühlen lassen ohne Feuerwehr.",alias:"bitumen asphalt heiß teer straßenbau"},
-  {un:"2910",name:"Radioaktive Stoffe, freigestellte Versandstücke",klasse:"7",kemler:"–",r:25,rb:300,gew:"gering",gewT:"Bei freigestellten Versandstücken meist gering. Strahlenschutz klärt Kontamination.",erst:GG_STD.rad,alias:"radioaktiv strahlung medizin kernkraft cattenom"},
-  {un:"2915",name:"Radioaktive Stoffe, Typ A, nicht besondere Form",klasse:"7",kemler:"–",r:50,rb:300,gew:"gering",gewT:"Strahlenschutz klärt, ob Kontamination vorliegt. Transportroute Luxemburg und Frankreich beachten.",erst:GG_STD.rad,alias:"radioaktiv typ a strahlung transport"},
-  {un:"0336",name:"Feuerwerkskörper (Kategorie 1.4G / 1.4S)",klasse:"1",kemler:"–",r:100,rb:800,gew:"gering",gewT:"Gering, Hauptgefahr sind Explosion und Splitter. Silvester, Großfeuerwerke an Mosel und Saar.",erst:GG_STD.expl,alias:"feuerwerk böller rakete silvester pyrotechnik"},
-  {un:"0333",name:"Feuerwerkskörper (Kategorie 1.1G)",klasse:"1",kemler:"–",r:300,rb:800,gew:"gering",gewT:"Massenexplosionsgefahr. Hauptgefahr Detonation und Splitter.",erst:GG_STD.expl,alias:"feuerwerk großfeuerwerk pyrotechnik massenexplosion"},
-  {un:"2814",name:"Ansteckungsgefährlicher Stoff, Kategorie A, für Menschen",klasse:"6.2",kemler:"–",r:25,rb:100,gew:"gering",gewT:"Gering, aber Desinfektion durch Spezialkräfte erforderlich.",erst:"Nicht berühren, Abstand halten, niemanden aus der Gruppe weglassen. Notruf 112, Gesundheitsamt über Leitstelle. Handschuhe und FFP-Maske nutzen, wenn vorhanden.",alias:"infektiös ansteckungsgefährlich labor proben"},
-  {un:"3291",name:"Klinischer Abfall, nicht spezifiziert",klasse:"6.2",kemler:"–",r:25,rb:100,gew:"gering",gewT:"Gering, Hygiene und Infektionsschutz beachten.",erst:"Nicht berühren. Abstand halten, Notruf 112. Handschuhe und Schutzkleidung, Bereich markieren, Entsorgung über Fachbetrieb.",alias:"klinischer abfall krankenhaus spritzen medizinabfall"},
-  {un:"2810",name:"Giftiger organischer Stoff, flüssig, n.a.g.",klasse:"6.1",kemler:"60",r:50,rb:300,gew:"hoch",gewT:"Gewässergefährdend. Hautkontakt und Dämpfe vermeiden.",erst:GG_STD.gift,alias:"giftig toxisch pestizid pflanzenschutz"}
+  {un:"1202",name:"Dieselkraftstoff, Heizöl (leicht)",klasse:"3",kemler:"30",g:"128",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"hoch",gewT:"Gewässerschädlich (hohe Gefährdung). Schon kleine Mengen verunreinigen Mosel, Saar und Zuflüsse. Ölsperre über Feuerwehr, Kanaldeckel nicht öffnen.",alias:"diesel heizöl kraftstoff tanklaster"},
+  {un:"1203",name:"Ottokraftstoff, Benzin",klasse:"3",kemler:"33",g:"128",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"hoch",gewT:"Sehr hohe Gefährdung. Gase heben sich nicht, sie sammeln sich in Senken und Kanälen. Zündgefahr im Umkreis.",alias:"benzin super kraftstoff tankstelle"},
+  {un:"1075",name:"Flüssiggas, LPG (Autogas)",klasse:"2.1",kemler:"23",g:"115",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"gering",gewT:"Gering, verflüchtigt sich. Hauptgefahr sind Explosion und BLEVE bei Brandbeteiligung des Tanks.",alias:"lpg autogas flüssiggas gas propan butan tankwagen"},
+  {un:"1005",name:"Ammoniak, wasserfrei",klasse:"2.3",kemler:"268",g:"125",wind:true,r:100,rb:1600,rbArt:"tank",tih:{"k": [30, 0.1, 0.2], "s": [150, 0.5, 0.7], "e": [300, 1.2, 2.1]},gew:"hoch",gewT:"Sehr giftig für Wasserorganismen. Bildet mit Wasser Lauge. Ausbreitung in Gewässer unbedingt verhindern.",alias:"ammoniak nh3 kältemittel kühlanlage"},
+  {un:"1017",name:"Chlor",klasse:"2.3",kemler:"268",g:"124",r:100,rb:800,rbArt:"tank",tih:{"k": [60, 0.3, 1.5], "s": [600, 3.3, 4.7], "e": [1000, 6.3, 8.9]},gew:"hoch",gewT:"Sehr giftig für Wasserorganismen. Schweres Gas, zieht in Senken und entlang des Moseltals.",alias:"chlor cl2 schwimmbad wasseraufbereitung"},
+  {un:"1789",name:"Salzsäure",klasse:"8",kemler:"80",g:"157",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Senkt den pH-Wert von Gewässern. Fischsterben möglich. Neutralisation nur durch Feuerwehr.",alias:"salzsäure hcl chlorwasserstoff"},
+  {un:"1830",name:"Schwefelsäure",klasse:"8",kemler:"80",g:"137",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Starke pH-Absenkung. Reagiert heftig mit Wasser. Nicht in Kanäle oder Gräben leiten.",alias:"schwefelsäure h2so4 batteriesäure"},
+  {un:"1263",name:"Farben, Lacke, Lösemittel (entzündbar)",klasse:"3",kemler:"33",g:"128",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"hoch",gewT:"Gewässergefährdend. Lösemitteldämpfe sind zündfähig, besonders in geschlossenen Räumen und Kanälen.",alias:"farbe lack lösemittel verdünnung malerbedarf"},
+  {un:"1993",name:"Entzündbare Flüssigkeit, n.a.g.",klasse:"3",kemler:"33",g:"128",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"hoch",gewT:"Unbekannter Inhalt. Wie Benzin behandeln, bis Stoff geklärt ist.",alias:"entzündbare flüssigkeit sammelposition"},
+  {un:"3082",name:"Umweltgefährdender Stoff, flüssig, n.a.g.",klasse:"9",kemler:"90",g:"171",wind:true,r:50,rb:800,rbArt:"tank",gew:"hoch",gewT:"Gewässergefährdend, aber meist wenig akut gefährlich für Menschen. Eintrag in Kanalisation und Mosel verhindern.",alias:"umweltgefährdend wassergefährdend flüssigkeit"},
+  {un:"3077",name:"Umweltgefährdender Stoff, fest, n.a.g.",klasse:"9",kemler:"90",g:"171",wind:true,r:25,rb:800,rbArt:"tank",gew:"hoch",gewT:"Gewässergefährdend. Staubentwicklung und Regen beachten, Abfluss verhindern.",alias:"umweltgefährdend fest staub granulat"},
+  {un:"3480",name:"Lithium-Ionen-Batterien",klasse:"9",kemler:"–",g:"147",wind:true,r:25,rb:500,rbArt:"zug",gew:"mittel",gewT:"Löschwasser wird kontaminiert (Fluor, Schwermetalle). Löschwasser auffangen lassen, nicht in die Mosel.",alias:"lithium akku batterie elektroauto e-auto ladung paket"},
+  {un:"3481",name:"Lithium-Ionen-Batterien in/mit Ausrüstung",klasse:"9",kemler:"–",g:"147",wind:true,r:25,rb:500,rbArt:"zug",gew:"mittel",gewT:"Wie UN 3480. Kontaminiertes Löschwasser auffangen.",alias:"lithium akku geräte"},
+  {un:"1049",name:"Wasserstoff, verdichtet",klasse:"2.1",kemler:"23",g:"115",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"gering",gewT:"Keine Gewässergefährdung. Extrem leicht entzündbar, Flamme im Tageslicht kaum sichtbar.",alias:"wasserstoff h2 brennstoffzelle tankstelle"},
+  {un:"1072",name:"Sauerstoff, verdichtet",klasse:"2.2",kemler:"25",g:"122",r:100,rb:800,rbArt:"tank",gr:500,grw:true,gew:"gering",gewT:"Keine Gewässergefährdung. Fördert Brände stark, Kleidung und Öl werden zur Zündquelle.",alias:"sauerstoff o2 flasche medizinisch schweißen"},
+  {un:"1066",name:"Stickstoff, verdichtet",klasse:"2.2",kemler:"20",g:"120",r:100,rb:800,rbArt:"tank",gr:100,grw:true,gew:"gering",gewT:"Keine Gewässergefährdung. Erstickungsgefahr in Senken und geschlossenen Räumen.",alias:"stickstoff n2 flasche"},
+  {un:"1977",name:"Stickstoff, tiefgekühlt, flüssig",klasse:"2.2",kemler:"22",g:"120",r:100,rb:800,rbArt:"tank",gr:100,grw:true,gew:"gering",gewT:"Keine Gewässergefährdung. Extreme Kälte, Erfrierungen, Erstickung.",alias:"stickstoff flüssig kryo tiefgekühlt"},
+  {un:"1230",name:"Methanol",klasse:"3",kemler:"336",g:"131",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Wassermischbar, in Gewässern gesundheits- und fischschädlich. Brennt mit kaum sichtbarer Flamme.",alias:"methanol methylalkohol scheibenreiniger frostschutz"},
+  {un:"1011",name:"Butan",klasse:"2.1",kemler:"23",g:"115",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"gering",gewT:"Gering. Schweres Gas, sammelt sich in Senken, Zündgefahr.",alias:"butan gas feuerzeug camping kartusche"},
+  {un:"1978",name:"Propan",klasse:"2.1",kemler:"23",g:"115",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"gering",gewT:"Gering. Schweres Gas, sammelt sich in Senken, Zündgefahr.",alias:"propan gasflasche grill heizung"},
+  {un:"1428",name:"Natrium",klasse:"4.3",kemler:"X423",g:"138",r:25,rb:800,rbArt:"tank",gr:300,grw:true,gew:"mittel",gewT:"Reagiert mit Wasser unter Bildung von Natronlauge und Wasserstoff. Keine Löschversuche mit Wasser.",alias:"natrium na alkalimetall"},
+  {un:"2031",name:"Salpetersäure",klasse:"8",kemler:"80",g:"157",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Starke pH-Absenkung, Stickoxide bei Reaktion. Nicht in Gewässer leiten.",alias:"salpetersäure hno3 nitrat"},
+  {un:"2794",name:"Batterien, nass, gefüllt mit Säure",klasse:"8",kemler:"80",g:"154",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Schwefelsäure und Blei. Ausgelaufene Säure nicht in Gewässer oder Kanäle gelangen lassen.",alias:"batterie akku autobatterie bleibatterie starterbatterie"},
+  {un:"1090",name:"Aceton",klasse:"3",kemler:"33",g:"127",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"mittel",gewT:"Wassermischbar, in größeren Mengen gewässerschädlich. Hochentzündlich.",alias:"aceton lösemittel nagellack"},
+  {un:"1170",name:"Ethanol, Ethylalkohol",klasse:"3",kemler:"33",g:"127",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"mittel",gewT:"Wassermischbar, Sauerstoffzehrung im Gewässer. Leicht entzündbar.",alias:"ethanol alkohol spiritus brennspiritus"},
+  {un:"1219",name:"Isopropanol, Isopropylalkohol",klasse:"3",kemler:"33",g:"129",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"mittel",gewT:"Wassermischbar, in Mengen gewässerschädlich. Leicht entzündbar.",alias:"isopropanol propanol reinigungsmittel"},
+  {un:"1114",name:"Benzol",klasse:"3",kemler:"33",g:"130",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"hoch",gewT:"Gewässergefährdend und krebserzeugend. Dämpfe nicht einatmen.",alias:"benzol aromat chemie"},
+  {un:"1294",name:"Toluol",klasse:"3",kemler:"33",g:"130",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"hoch",gewT:"Gewässergefährdend. Dämpfe betäubend, zündfähig.",alias:"toluol lösemittel"},
+  {un:"1307",name:"Xylol",klasse:"3",kemler:"30",g:"130",r:50,rb:800,rbArt:"tank",gr:300,grw:true,gew:"hoch",gewT:"Gewässergefährdend. Dämpfe betäubend, zündfähig.",alias:"xylol lösemittel"},
+  {un:"1824",name:"Natronlauge, Lösung",klasse:"8",kemler:"80",g:"154",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Hebt den pH-Wert stark an. Fischgiftig, nicht in Gewässer oder Kanäle.",alias:"natronlauge naoh ätznatron lauge"},
+  {un:"1814",name:"Kalilauge, Lösung",klasse:"8",kemler:"80",g:"154",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Hebt den pH-Wert stark an. Fischgiftig.",alias:"kalilauge koh ätzkali"},
+  {un:"1805",name:"Phosphorsäure",klasse:"8",kemler:"80",g:"154",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Senkt pH-Wert, nährstoffreich. Nicht in Gewässer leiten.",alias:"phosphorsäure h3po4 rostentferner"},
+  {un:"1791",name:"Hypochlorit-Lösung (Bleichlauge)",klasse:"8",kemler:"80",g:"154",wind:true,r:50,rb:800,rbArt:"tank",gew:"hoch",gewT:"Sehr giftig für Wasserorganismen. Entwickelt mit Säuren giftiges Chlor.",alias:"hypochlorit bleichlauge chlorbleiche javelwasser"},
+  {un:"1760",name:"Ätzende Flüssigkeit, n.a.g.",klasse:"8",kemler:"80",g:"154",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Unbekannter Inhalt. Wie Säure oder Lauge behandeln, nicht ins Gewässer.",alias:"ätzend flüssigkeit säure lauge sammelposition"},
+  {un:"1950",name:"Druckgaspackungen (Aerosole)",klasse:"2.1",kemler:"–",g:"126",r:100,rb:800,rbArt:"tank",gr:500,grw:true,gew:"gering",gewT:"Gering. Bei Brand Explosion einzelner Dosen mit Splitterflug.",alias:"aerosol spraydose druckgaspackung deo"},
+  {un:"1965",name:"Kohlenwasserstoffgasgemisch, verflüssigt, n.a.g.",klasse:"2.1",kemler:"23",g:"115",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"gering",gewT:"Gering. Zündgefahr, schwere Gase in Senken.",alias:"gasgemisch kohlenwasserstoff lpg"},
+  {un:"1971",name:"Methan, Erdgas, verdichtet",klasse:"2.1",kemler:"23",g:"115",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"gering",gewT:"Keine Gewässergefährdung. Leichter als Luft, steigt auf. Zündgefahr in geschlossenen Räumen.",alias:"erdgas methan cng biogas"},
+  {un:"1001",name:"Acetylen, gelöst",klasse:"2.1",kemler:"239",g:"116",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"gering",gewT:"Gering. Zerfallsgefahr bei Erwärmung, Flaschen können explodieren.",alias:"acetylen autogen schweißen flasche"},
+  {un:"1013",name:"Kohlendioxid, verdichtet",klasse:"2.2",kemler:"20",g:"120",r:100,rb:800,rbArt:"tank",gr:100,grw:true,gew:"gering",gewT:"Keine Gewässergefährdung. Schwerer als Luft, Erstickungsgefahr in Senken, Kellern und Schächten.",alias:"kohlendioxid co2 flasche getränke"},
+  {un:"1006",name:"Argon, verdichtet",klasse:"2.2",kemler:"20",g:"120",r:100,rb:800,rbArt:"tank",gr:100,grw:true,gew:"gering",gewT:"Keine. Erstickungsgefahr in geschlossenen Räumen.",alias:"argon schutzgas schweißen"},
+  {un:"1046",name:"Helium, verdichtet",klasse:"2.2",kemler:"20",g:"120",r:100,rb:800,rbArt:"tank",gr:100,grw:true,gew:"gering",gewT:"Keine. Druckflaschen können bei Brand bersten.",alias:"helium ballon"},
+  {un:"1079",name:"Schwefeldioxid",klasse:"2.3",kemler:"268",g:"125",wind:true,r:100,rb:1600,rbArt:"tank",tih:{"k": [100, 0.6, 2.6], "s": [1000, 6.0, 7.9], "e": [1000, "11+", "11+"]},gew:"hoch",gewT:"Giftig für Wasserorganismen, bildet mit Wasser schweflige Säure.",alias:"schwefeldioxid so2 kältemittel"},
+  {un:"1040",name:"Ethylenoxid",klasse:"2.3",kemler:"239",g:"119P",wind:true,r:100,rb:1600,rbArt:"tank",tih:{"k": [30, 0.1, 0.2], "s": [100, 0.5, 0.7], "e": [200, 0.8, 1.4]},gew:"mittel",gewT:"Wassermischbar. Giftig, krebserzeugend, extrem entzündbar.",alias:"ethylenoxid sterilisation"},
+  {un:"1086",name:"Vinylchlorid, stabilisiert",klasse:"2.1",kemler:"239",g:"116P",r:100,rb:1600,rbArt:"tank",gr:800,grw:true,gew:"mittel",gewT:"Gesundheitsschädlich, krebserzeugend, entzündbar.",alias:"vinylchlorid pvc kunststoff"},
+  {un:"1942",name:"Ammoniumnitrat",klasse:"5.1",kemler:"50",g:"140",r:25,rb:1600,rbArt:"an",gr:100,grw:true,gew:"mittel",gewT:"Nährstoffeintrag, schädlich für Gewässer. Bei Brand giftige Gase, Explosionsgefahr bei Einschluss.",alias:"ammoniumnitrat dünger düngemittel kalkammonsalpeter"},
+  {un:"2014",name:"Wasserstoffperoxid, wässrige Lösung (20–60 %)",klasse:"5.1",kemler:"58",g:"140",r:50,rb:800,rbArt:"tank",gr:100,grw:true,gew:"mittel",gewT:"Gewässerschädlich in Konzentration. Zersetzt sich unter Sauerstoffbildung, Brandförderung.",alias:"wasserstoffperoxid h2o2 bleichmittel"},
+  {un:"2672",name:"Ammoniaklösung",klasse:"8",kemler:"80",g:"154",wind:true,r:50,rb:800,rbArt:"tank",gew:"hoch",gewT:"Sehr giftig für Wasserorganismen.",alias:"ammoniaklösung salmiakgeist reinigung"},
+  {un:"3257",name:"Erhitzter flüssiger Stoff, n.a.g. (z. B. Bitumen, Asphalt)",klasse:"9",kemler:"99",g:"171",wind:true,r:50,rb:800,rbArt:"tank",gew:"mittel",gewT:"Verunreinigt Gewässer und Böden. Verbrennungsgefahr bei Kontakt.",alias:"bitumen asphalt heiß teer straßenbau"},
+  {un:"2910",name:"Radioaktive Stoffe, freigestellte Versandstücke",klasse:"7",kemler:"–",g:"161",r:25,rb:300,rbArt:"evak",gr:100,grw:true,gew:"gering",gewT:"Bei freigestellten Versandstücken meist gering. Strahlenschutz klärt Kontamination.",alias:"radioaktiv strahlung medizin kernkraft cattenom"},
+  {un:"2915",name:"Radioaktive Stoffe, Typ A, nicht besondere Form",klasse:"7",kemler:"–",g:"163",r:25,rb:300,rbArt:"evak",gr:100,grw:true,gew:"gering",gewT:"Strahlenschutz klärt, ob Kontamination vorliegt. Transportroute Luxemburg und Frankreich beachten.",alias:"radioaktiv typ a strahlung transport"},
+  {un:"0336",name:"Feuerwerkskörper (Kategorie 1.4G / 1.4S)",klasse:"1",kemler:"–",g:"114",r:100,rb:800,rbArt:"zug",gr:250,grw:false,funk:100,gew:"gering",gewT:"Gering, Hauptgefahr sind Explosion und Splitter. Silvester, Großfeuerwerke an Mosel und Saar.",alias:"feuerwerk böller rakete silvester pyrotechnik"},
+  {un:"0333",name:"Feuerwerkskörper (Kategorie 1.1G)",klasse:"1",kemler:"–",g:"112",r:500,rb:1600,rbArt:"zug",gr:800,grw:false,funk:100,gew:"gering",gewT:"Massenexplosionsgefahr. Hauptgefahr Detonation und Splitter.",alias:"feuerwerk großfeuerwerk pyrotechnik massenexplosion"},
+  {un:"2814",name:"Ansteckungsgefährlicher Stoff, Kategorie A, für Menschen",klasse:"6.2",kemler:"–",g:"158",r:25,rb:null,rbArt:null,gew:"gering",gewT:"Gering, aber Desinfektion durch Spezialkräfte erforderlich.",alias:"infektiös ansteckungsgefährlich labor proben"},
+  {un:"3291",name:"Klinischer Abfall, nicht spezifiziert",klasse:"6.2",kemler:"–",g:"158",r:25,rb:null,rbArt:null,gew:"gering",gewT:"Gering, Hygiene und Infektionsschutz beachten.",alias:"klinischer abfall krankenhaus spritzen medizinabfall"},
+  {un:"2810",name:"Giftiger organischer Stoff, flüssig, n.a.g.",klasse:"6.1",kemler:"60",g:"153",wind:true,r:50,rb:800,rbArt:"tank",gew:"hoch",gewT:"Gewässergefährdend. Hautkontakt und Dämpfe vermeiden.",alias:"giftig toxisch pestizid pflanzenschutz"}
 ];
 
 const DIENSTBEZIRK = {
@@ -5078,6 +5084,7 @@ const S = {
   alerts: store.get('cache.alerts', null),
   pegel: {},
   mapStyle: ['hell', 'grau', 'dunkel'].includes(store.get('mapStyle', 'hell')) ? store.get('mapStyle', 'hell') : 'hell',
+  ms: (() => { const ok = v => ['hell', 'grau', 'dunkel'].includes(v); const d = ok(store.get('mapStyle', 'hell')) ? store.get('mapStyle', 'hell') : 'hell'; const o = {}; ['lb', 'wx', 'wc'].forEach(k => { const v = store.get('ms.' + k, d); o[k] = ok(v) ? v : 'hell'; }); return o; })(),
   online: navigator.onLine
 };
 const DIMS = [1, .82, .65, .5];
@@ -6188,7 +6195,7 @@ function wxMarkers() {
   WXM.markers = L.layerGroup(DST.map(d => L.circleMarker([d.lat, d.lon], {radius: d.k === S.dst ? 9 : (d.w ? 3.5 : 5.5), color: '#fff', weight: 2, fillColor: d.k === S.dst ? '#ff8c1a' : '#2563eb', fillOpacity: 1}).bindTooltip(d.n, {direction: 'top', offset: [0, -6]}))).addTo(WXM.map);
 }
 function wxView() { if (!WXM.map) return; const c = wxCenter(); WXM.map.setView([c.lat, c.lon], WD.z, {animate: false}); wxMarkers(); }
-function wxTheme() { if (!WXM.map) return; if (WXM.base) WXM.base.setUrl(lbTopUrl()); WXM.map.getContainer().classList.toggle('wxdark', S.mapStyle === 'dunkel'); }
+function wxTheme() { if (!WXM.map) return; if (WXM.base) WXM.base.setUrl(lbTopUrl(S.ms.wx)); WXM.map.getContainer().classList.toggle('wxdark', S.ms.wx === 'dunkel'); }
 function wxPlace() {
   if (!WXM.map) return; const sz = WXM.map.getSize(), pos = WXM.map.containerPointToLayerPoint([0, 0]);
   [WXM.fcv, WXM.pcv].forEach(c => { if (c.width !== sz.x || c.height !== sz.y) { c.width = sz.x; c.height = sz.y; } L.DomUtil.setPosition(c, pos); });
@@ -6197,7 +6204,7 @@ function wxPlace() {
 function wxInit() {
   if (WXM.map || IS_ART || typeof L === 'undefined') return;
   const c = wxCenter(), m = WXM.map = L.map('wxMap', {zoomControl: true, attributionControl: true, preferCanvas: true, zoomSnap: .5, zoomDelta: .5, wheelPxPerZoomLevel: 90}).setView([c.lat, c.lon], WD.z);
-  WXM.base = L.tileLayer(lbTopUrl(), {maxZoom: 17, attribution: '© <a href="https://www.bkg.bund.de" target="_blank" rel="noopener noreferrer">BKG</a> ' + new Date().getFullYear() + ' <a href="https://www.govdata.de/dl-de/by-2-0" target="_blank" rel="noopener noreferrer">dl-de/by-2-0</a>, <a href="https://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf" target="_blank" rel="noopener noreferrer">Datenquellen</a> (TopPlusOpen) · Wetterdaten: Deutscher Wetterdienst'}).addTo(m);
+  WXM.base = L.tileLayer(lbTopUrl(S.ms.wx), {maxZoom: 17, attribution: '© <a href="https://www.bkg.bund.de" target="_blank" rel="noopener noreferrer">BKG</a> ' + new Date().getFullYear() + ' <a href="https://www.govdata.de/dl-de/by-2-0" target="_blank" rel="noopener noreferrer">dl-de/by-2-0</a>, <a href="https://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf" target="_blank" rel="noopener noreferrer">Datenquellen</a> (TopPlusOpen) · Wetterdaten: Deutscher Wetterdienst'}).addTo(m);
   m.createPane('wxfield').style.zIndex = 250; m.createPane('wxpart').style.zIndex = 260; m.getPane('wxfield').style.pointerEvents = 'none'; m.getPane('wxpart').style.pointerEvents = 'none';
   WXM.fcv = document.createElement('canvas'); WXM.pcv = document.createElement('canvas'); m.getPane('wxfield').appendChild(WXM.fcv); m.getPane('wxpart').appendChild(WXM.pcv); WXM.fctx = WXM.fcv.getContext('2d');
   m.on('movestart zoomstart', () => { WXM.fctx.clearRect(0, 0, WXM.fcv.width, WXM.fcv.height); WXM.pcv.getContext('2d').clearRect(0, 0, WXM.pcv.width, WXM.pcv.height); });
@@ -6372,7 +6379,7 @@ const LB_ROADS = ['A1', 'A48', 'A60', 'A64', 'A602'];
 const LB_DAY = 864e5;
 const lbIso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const lbNum = v => Number(v).toLocaleString('de-DE');
-const lbTopUrl = () => `https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/${S.mapStyle === 'hell' ? 'web_light' : 'web_grau'}/default/WEBMERCATOR/{z}/{y}/{x}.png`;
+const lbTopUrl = (st = 'hell') => `https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/${st === 'hell' ? 'web_light' : 'web_grau'}/default/WEBMERCATOR/{z}/{y}/{x}.png`;
 const LB_ATTR = '© <a href="https://www.bkg.bund.de" target="_blank" rel="noopener noreferrer">BKG</a> ' + new Date().getFullYear() + ' <a href="https://www.govdata.de/dl-de/by-2-0" target="_blank" rel="noopener noreferrer">dl-de/by-2-0</a> (TopPlusOpen)';
 
 /* ---------- Dienststelle und Dienstbezirk ---------- */
@@ -6749,20 +6756,47 @@ function lbHeute() {
   const tl = `<h4 class="lb-h4">Die nächsten 24 Stunden <small>ab 06:00 Uhr · Punkte anklicken: Meldung öffnen bzw. Termin im Kalender</small></h4><div class="lb-tl" style="height:${H}px">
     <div class="lb-lane" style="top:0"><em>Dunkelheit</em>${seg(d6, s1.dammAn, '#1d4f7d', 'dunkel')}${seg(s1.unter, s1.dammAus, '#c48a3a', 'Dämmerung')}${seg(s1.dammAus, s2.dammAn, '#1d4f7d', 'dunkel ab ' + fmtT(s1.dammAus))}</div>
     <div class="lb-lane" style="top:${LH}px"><em>Warnungen</em>${al.map(a => seg(new Date(a.onset || d6), new Date(a.expires || +d6 + LB_DAY), LB_SEVC[LB_SEV[a.severity] || 1], (a.event_de || '') + ' ' + (a.onset ? fmtDT(new Date(a.onset)) : '') + ' bis ' + (a.expires ? fmtDT(new Date(a.expires)) : ''))).join('')}</div>
-    ${lanes.map((l, li) => `<div class="lb-lane lb-plane" style="top:${top0 + li * LH}px"><em title="${esc(l.n)}"><i style="background:${l.col}"></i>${esc(l.n)}</em>${l.dots.sort((x, y) => x.t - y.t).map((d, i) => dot(d, l.col, i)).join('')}</div>`).join('')}
+    ${lanes.map((l, li) => `<div class="lb-lane lb-plane" style="top:${top0 + li * LH}px"><em title="${esc(l.n)}"><i style="background:${l.col}"></i>${esc(l.n)}</em>${lbCluster(l.dots, pc).map((g, i) => g.length === 1 ? dot(g[0], l.col, i) : lbGrpDot(g, l.col, pc)).join('')}</div>`).join('')}
     <u class="lb-now" style="left:${pc(now)}%;height:${H - 18}px"></u>
     ${[6, 9, 12, 15, 18, 21, 0, 3, 6].map((h, i) => `<small class="lb-tick" style="left:${i * 12.5}%">${String(h).padStart(2, '0')}</small>`).join('')}</div>
     <div class="lb-tlnote">${!lanes.length ? '<span>Heute noch keine Meldung im PP Trier und kein Termin mit Uhrzeit.</span>' : ''}${open.length ? `<span><b>Termine ohne Uhrzeit:</b> ${open.slice(0, 6).map(e => `<button type="button" class="lb-tllink" data-tlev="${esc(e.name)}">${esc(e.name.split(/[(,]/)[0].trim())}</button>`).join(' · ')}${open.length > 6 ? ' und ' + (open.length - 6) + ' weitere' : ''}</span>` : ''}</div>`;
   return `<div class="lb-heute"><div>${ring}</div><div>${bars}</div><div class="lb-tlw">${tl}</div></div>`;
 }
 
+/* Zeitleiste: Punkte, die näher als ca. 20 Minuten beieinander liegen, zu einer Gruppe zusammenfassen */
+function lbCluster(dots, pc) {
+  const ds = dots.slice().sort((a, b) => a.t - b.t), out = [];
+  ds.forEach(d => { const g = out[out.length - 1]; if (g && pc(d.t) - pc(g[g.length - 1].t) < 1.4) g.push(d); else out.push([d]); });
+  return out;
+}
+LB.tlg = [];
+function lbGrpDot(g, col, pc) {
+  const id = LB.tlg.push(g) - 1, t0 = g[0].t, t1 = g[g.length - 1].t;
+  const tip = g.length + ' Einträge ' + fmtT(t0) + (+t1 !== +t0 ? '–' + fmtT(t1) : '') + ': anklicken für die Liste';
+  return `<button type="button" class="lb-tdot lb-tgrp" style="left:${pc(t0)}%;top:1px;background:${col}" data-tlg="${id}" title="${esc(tip)}" aria-label="${esc(tip)}">${g.length}</button>`;
+}
+function lbTlPop(btn) {
+  $$('.lb-tlpop').forEach(x => x.remove());
+  const g = LB.tlg[+btn.dataset.tlg]; if (!g) return;
+  const pop = document.createElement('div'); pop.className = 'lb-tlpop';
+  pop.innerHTML = `<div class="lb-tlpop-h">${g.length} Einträge <button type="button" class="lb-tlpop-x" aria-label="Schließen">×</button></div>` + g.map(d => d.href
+    ? `<a href="${esc(d.href)}" target="_blank" rel="noopener noreferrer">${esc(d.tip)} <span>→</span></a>`
+    : `<button type="button" data-tlev="${esc(d.ev)}">${esc(d.tip)} <span>→</span></button>`).join('');
+  const tl = btn.closest('.lb-tl'); tl.appendChild(pop);
+  const r = btn.getBoundingClientRect(), tr = tl.getBoundingClientRect();
+  pop.style.left = Math.max(0, Math.min(tr.width - 340, r.left - tr.left - 20)) + 'px'; pop.style.top = (r.bottom - tr.top + 6) + 'px';
+  $('.lb-tlpop-x', pop).onclick = () => pop.remove();
+  $$('[data-tlev]', pop).forEach(b => b.onclick = () => { pop.remove(); go('events'); setTimeout(() => { const i = $('#evSearch'); if (i) { i.value = b.dataset.tlev.split(/[(,]/)[0].trim(); i.dispatchEvent(new Event('input')); i.scrollIntoView({block: 'center'}); } }, 120); });
+}
+document.addEventListener('click', e => { const b = e.target.closest('.lb-tgrp'); if (b) { e.preventDefault(); lbTlPop(b); return; } if (!e.target.closest('.lb-tlpop')) $$('.lb-tlpop').forEach(x => x.remove()); });
+
 /* ---------- Lagekarte ---------- */
 function lbMapInit() {
   if (LB.map || typeof L === 'undefined' || (typeof IS_ARTIFACT !== 'undefined' && IS_ARTIFACT)) return;
   const el = $('#lbMap'); if (!el || !el.offsetWidth) return;
   const m = LB.map = L.map(el, {zoomControl: true, zoomSnap: .25, preferCanvas: false, scrollWheelZoom: true}).setView([49.95, 6.9], 9);
-  LB.base = L.tileLayer(lbTopUrl(), {maxZoom: 17, attribution: LB_ATTR + ' · DWD · Autobahn GmbH · PEGELONLINE'}).addTo(m);
-  m.getContainer().classList.toggle('wxdark', S.mapStyle === 'dunkel');
+  LB.base = L.tileLayer(lbTopUrl(S.ms.lb), {maxZoom: 17, attribution: LB_ATTR + ' · DWD · Autobahn GmbH · PEGELONLINE'}).addTo(m);
+  m.getContainer().classList.toggle('wxdark', S.ms.lb === 'dunkel');
   const lg = L.control({position: 'bottomleft'});
   lg.onAdd = () => { const d = L.DomUtil.create('div', 'lb-mleg'); d.innerHTML = '<b>Legende</b><span><i style="background:#e5484d"></i>Autobahn: Sperrung</span><span><i class="lb-bau"></i>Autobahn: Baustelle</span><span><i style="background:linear-gradient(90deg,#ffeb3b,#fb8c00,#e53935,#8e24aa)"></i>DWD-Warnung (Gelb bis Violett nach Stufe)</span><span><i style="background:#1e6fd9;border-radius:50%"></i>Pegel</span><span><i style="background:#7c5ce0;border-radius:50%"></i>Veranstaltung heute</span>'; L.DomEvent.disableClickPropagation(d); return d; };
   lg.addTo(m);
@@ -6803,12 +6837,13 @@ function lbMapChips() {
   const D = [['ab', 'Autobahn', '#e5484d'], ['warn', 'DWD-Warnungen', 'linear-gradient(90deg,#ffeb3b,#fb8c00,#e53935,#8e24aa)'], ['peg', 'Pegel', '#1e6fd9'], ['ev', 'Veranstaltungen heute', '#7c5ce0'], ['bez', 'Dienstbezirke', '#1f5eff']];
   return D.map(([k, n, c]) => `<button class="chip" data-lbl="${k}" aria-pressed="${!!LB.on[k]}"><i class="lb-dot" style="background:${c}"></i>${n}</button>`).join('');
 }
-function lbStyleSeg() { return [['hell', 'Weiß-Blau'], ['grau', 'Grau'], ['dunkel', 'Dunkel']].map(([k, n]) => `<button data-ms="${k}" aria-pressed="${S.mapStyle === k}">${n}</button>`).join(''); }
-function lbSetMapStyle(st) {
-  S.mapStyle = st; store.set('mapStyle', st);
-  if (LB.base) LB.base.setUrl(lbTopUrl()); if (LB.map) LB.map.getContainer().classList.toggle('wxdark', st === 'dunkel');
-  if (typeof wxTheme === 'function') wxTheme();
-  $$('[data-ms]').forEach(b => b.setAttribute('aria-pressed', b.dataset.ms === st));
+function lbStyleSeg(map) { return [['hell', 'Weiß-Blau'], ['grau', 'Grau'], ['dunkel', 'Dunkel']].map(([k, n]) => `<button data-ms="${k}" aria-pressed="${S.ms[map] === k}">${n}</button>`).join(''); }
+function lbSetMapStyle(map, st) {
+  S.ms[map] = st; store.set('ms.' + map, st);
+  if (map === 'lb' && LB.base) { LB.base.setUrl(lbTopUrl(st)); LB.map.getContainer().classList.toggle('wxdark', st === 'dunkel'); }
+  if (map === 'wx' && typeof wxTheme === 'function') wxTheme();
+  if (map === 'wc' && typeof WC !== 'undefined' && WC.base) { WC.base.setUrl(lbTopUrl(st)); WC.map.getContainer().classList.toggle('wxdark', st === 'dunkel'); }
+  $$(`.lb-mstyle[data-map="${map}"] [data-ms]`).forEach(b => b.setAttribute('aria-pressed', b.dataset.ms === st));
 }
 
 /* ---------- Zeichnen ---------- */
@@ -6816,11 +6851,12 @@ function lbRender(force) {
   const root = $('#lbKpis'); if (!root) return;
   let sig = '';
   try { sig = [S.dst, S.alerts && S.alerts.t, S.wx && S.wx.t, LB.ab && LB.ab.t, LB.temp && LB.temp.t, Object.keys(LB.peg).length, typeof feedItems !== 'undefined' ? feedItems.length : 0, LB.filt, !!LB.krit, JSON.stringify(LB_FL), new Date().getMinutes(), JSON.stringify(Object.fromEntries(Object.entries(S.pegel || {}).map(([k, v]) => [k, v && v.t])))].join('|'); } catch (e) { sig = String(Date.now()); }
+  try { lbMapInit(); } catch (e) { console.warn('Lagekarte:', e); }
   if (!force && sig === LB.sig) return; LB.sig = sig;
   try { root.innerHTML = lbKpis(); } catch (e) { root.innerHTML = lbErrBox('Kennzahlen', e); }
   try { const k = $('#lbKrit'); if (k) k.onclick = e => { e.preventDefault(); LB.krit = !LB.krit; lbRender(true); }; lbBindBar($('#lbFahnd'), () => lbRender(true)); } catch (e) { console.warn(e); }
   try { $('#lbTickerBody').innerHTML = lbTicker(); $$('[data-lbf]').forEach(b => b.onclick = () => { LB.filt = b.dataset.lbf; lbRender(true); }); lbBindBar($('#lbTickerBody'), () => lbRender(true)); } catch (e) { $('#lbTickerBody').innerHTML = lbErrBox('Lage-Ticker', e); }
-  try { $('#lbHeuteBody').innerHTML = lbHeute(); $$('#lbHeuteBody [data-tlev]').forEach(b => b.onclick = () => { go('events'); setTimeout(() => { const i = $('#evSearch'); if (i) { i.value = b.dataset.tlev.split(/[(,]/)[0].trim(); i.dispatchEvent(new Event('input')); i.scrollIntoView({block: 'center'}); } }, 120); }); } catch (e) { $('#lbHeuteBody').innerHTML = lbErrBox('Heute im Bereich', e); }
+  try { LB.tlg = []; $('#lbHeuteBody').innerHTML = lbHeute(); $$('#lbHeuteBody [data-tlev]').forEach(b => b.onclick = () => { go('events'); setTimeout(() => { const i = $('#evSearch'); if (i) { i.value = b.dataset.tlev.split(/[(,]/)[0].trim(); i.dispatchEvent(new Event('input')); i.scrollIntoView({block: 'center'}); } }, 120); }); } catch (e) { $('#lbHeuteBody').innerHTML = lbErrBox('Heute im Bereich', e); }
   try { $('#lbStand').textContent = 'Stand ' + fmtT(new Date()); } catch (e) {}
   try { lbMapInit(); lbMapLayers(false); } catch (e) { console.warn('Lagekarte:', e); const m = $('#lbMap'); if (m && !LB.map) m.innerHTML = lbErrBox('Lagekarte', e); }
 }
@@ -6830,14 +6866,17 @@ function lbInit() {
   if ($('#lbSize') && typeof sizer === 'function') sizer('#lbBox', '#lbSize', '#lbClose');
   $('#lbMapChips').innerHTML = lbMapChips();
   $$('#lbMapChips [data-lbl]').forEach(b => b.addEventListener('click', () => { LB.on[b.dataset.lbl] = !LB.on[b.dataset.lbl]; store.set('lb.lay', LB.on); b.setAttribute('aria-pressed', LB.on[b.dataset.lbl]); lbMapLayers(false); }));
-  $$('.lb-mstyle').forEach(s => { s.innerHTML = lbStyleSeg(); });
-  document.addEventListener('click', e => { const b = e.target.closest('[data-ms]'); if (b) lbSetMapStyle(b.dataset.ms); });
+  $$('.lb-mstyle').forEach(s => { s.innerHTML = lbStyleSeg(s.dataset.map); });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-ms]'); const g = b && b.closest('.lb-mstyle'); if (g && g.dataset.map) lbSetMapStyle(g.dataset.map, b.dataset.ms); });
   $('#dstSel') && $('#dstSel').addEventListener('change', () => setTimeout(() => { LB.moved = false; lbRender(true); lbMapLayers(true); lbLoadTemp(); }, 50));
   lbRender(true);
   setTimeout(() => { lbMapInit(); lbMapLayers(true); }, 400);
   lbLoadAutobahn(); lbLoadPegel(); setTimeout(lbLoadTemp, 1500);
   setInterval(lbLoadAutobahn, 10 * 60 * 1000); setInterval(lbLoadPegel, 15 * 60 * 1000); setInterval(lbLoadTemp, 30 * 60 * 1000);
   setInterval(() => lbRender(false), 5000);
+  // Karte erzeugen, sobald sie sichtbar wird (z. B. nach Wechsel aus einem anderen Bereich), und Größe nachführen
+  const box = $('#lbBox'); if (box && 'IntersectionObserver' in window) new IntersectionObserver(en => { if (en.some(x => x.isIntersecting)) { try { if (!LB.map) { lbMapInit(); lbMapLayers(true); } else LB.map.invalidateSize(); } catch (e) { console.warn(e); } } }).observe(box);
+  window.addEventListener('hashchange', () => setTimeout(() => { try { if (!LB.map) { lbMapInit(); lbMapLayers(true); } else LB.map.invalidateSize(); } catch (e) {} }, 150));
   const cd = $('#lbCd'); let n = 60; setInterval(() => { n = n <= 1 ? 60 : n - 1; if (cd) cd.textContent = n; }, 1000);
   setTimeout(() => store.set('lb.seen', Date.now()), 20000);
 }
@@ -6868,8 +6907,8 @@ function wcMapInit() {
   if (WC.map || typeof L === 'undefined' || (typeof IS_ARTIFACT !== 'undefined' && IS_ARTIFACT)) return;
   const el = $('#wcMap'); if (!el || !el.offsetWidth) return;
   const m = WC.map = L.map(el, {zoomControl: true, zoomSnap: .25, scrollWheelZoom: true}).setView([49.8, 6.8], 8);
-  WC.base = L.tileLayer(lbTopUrl(), {maxZoom: 17, attribution: LB_ATTR + ' · Webcams: eigene Recherche, <a href="https://de.worldcam.eu" target="_blank" rel="noopener noreferrer">WorldCam.eu</a>, Betreiber, OpenStreetMap (ODbL)'}).addTo(m);
-  m.getContainer().classList.toggle('wxdark', S.mapStyle === 'dunkel');
+  WC.base = L.tileLayer(lbTopUrl(S.ms.wc), {maxZoom: 17, attribution: LB_ATTR + ' · Webcams: eigene Recherche, <a href="https://de.worldcam.eu" target="_blank" rel="noopener noreferrer">WorldCam.eu</a>, Betreiber, OpenStreetMap (ODbL)'}).addTo(m);
+  m.getContainer().classList.toggle('wxdark', S.ms.wc === 'dunkel');
   if (typeof BEZIRK_GEO !== 'undefined') L.layerGroup(Object.keys(BEZIRK_GEO).map(k => { const r = LB_RINGS[k] || (LB_RINGS[k] = lbRing(k)); return r ? L.polygon(r, {color: '#1f5eff', weight: 1.2, opacity: .7, fillOpacity: .03, interactive: false}) : null; }).filter(Boolean)).addTo(m);
   new ResizeObserver(() => m.invalidateSize()).observe(el);
 }
@@ -6892,7 +6931,6 @@ function wcRender() {
   if (typeof sizer === 'function' && $('#wcSize') && !$('#wcSize').dataset.on) { $('#wcSize').dataset.on = 1; sizer('#wcBox', '#wcSize', '#wcClose'); }
   setTimeout(() => { wcMapInit(); wcDraw(true); }, 120);
 }
-document.addEventListener('click', e => { const b = e.target.closest('[data-ms]'); if (b && WC.base) { setTimeout(() => { WC.base.setUrl(lbTopUrl()); WC.map.getContainer().classList.toggle('wxdark', S.mapStyle === 'dunkel'); }, 0); } });
 
 
 /* ==========================================================================
@@ -7016,22 +7054,43 @@ VIEWS.events = () => {
    Gefahrgut
    ========================================================================== */
 const GG = {q: '', k: ''};
+const GG_BRAND = {
+  tank: 'Brand mit Tank, Tanklastzug oder Kesselwagen: absperren, Räumung prüfen',
+  zug: 'Brand mit Anhänger oder Waggon: absperren, Räumung einleiten, auch Einsatzkräfte',
+  an: 'Ammoniumnitrat in Tank, Lkw oder Waggon im Brand: absperren, Räumung einleiten, auch Einsatzkräfte',
+  evak: 'Großbrand mit großer Menge: Räumung prüfen'
+};
+function ggAbstand(g) {
+  const km = v => typeof v === 'number' ? nf.format(v) + ' km' : String(v).replace('+', '') + ' km und mehr';
+  const z = [];
+  if (g.gr) z.push(`<li><b>Große Freisetzung:</b> Räumung ${g.grw ? 'in Windrichtung ' : 'in alle Richtungen '}auf mindestens ${nf.format(g.gr)} m prüfen.</li>`);
+  if (g.tih) {
+    const [k, s, e] = [g.tih.k, g.tih.s, g.tih.e];
+    z.push(`<li><b>Giftiges Gas, kleine Freisetzung (Tabelle 1):</b> ${nf.format(k[0])} m absperren, Menschen in Windrichtung schützen: tags ${km(k[1])}, nachts ${km(k[2])}.</li>`);
+    z.push(`<li><b>Große Freisetzung (Tabelle 3, mäßiger Wind):</b> Straßentank ${nf.format(s[0])} m absperren, in Windrichtung tags ${km(s[1])}, nachts ${km(s[2])}. Kesselwagen ${nf.format(e[0])} m, tags ${km(e[1])}, nachts ${km(e[2])}.</li>`);
+  } else if (g.wind) z.push('<li>Bei Wind den Abstand in Windrichtung nach Bedarf vergrößern.</li>');
+  if (g.funk) z.push(`<li><b>Funk:</b> keine Funkgeräte näher als ${g.funk} m an elektrischen Zündern betreiben.</li>`);
+  return `<div class="ggm"><div class="ggm-h">Empfehlung Mindestabstand</div>
+      <div class="rad"><div><div class="l">Sofort absperren</div><div class="v num">${nf.format(g.r)}<small> m</small></div><div class="s">in alle Richtungen</div></div>
+      <div><div class="l">Bei Brand</div>${g.rb ? `<div class="v num">${nf.format(g.rb)}<small> m</small></div><div class="s">${esc(GG_BRAND[g.rbArt] || '')}</div>` : '<div class="v na">keine Angabe</div><div class="s">ERG nennt für diesen Stoff keinen Brandabstand</div>'}</div></div>
+      ${z.length ? `<ul class="ggm-l">${z.join('')}</ul>` : ''}
+      <div class="ggm-q">Mindestwerte nach ERG 2024, Leitfaden ${esc(g.g)}${g.tih ? ', Tabellen 1 und 3' : ''}</div></div>`;
+}
 function renderGG() {
   const q = norm(GG.q).replace(/^un\s*/, '');
   const list = GEFAHRGUT.filter(g => (!GG.k || g.klasse === GG.k) && (!q || g.un.startsWith(q) || g.kemler === q || norm(g.name + ' ' + g.alias).includes(q) || (/^\d{1,4}$/.test(q) && g.un.includes(q))));
   const klassen = [...new Set(GEFAHRGUT.map(g => g.klasse))].sort((a, b) => parseFloat(a) - parseFloat(b));
   $('#ggKlassen').innerHTML = `<button class="chip" data-k="" aria-pressed="${!GG.k}">Alle Klassen<span class="n">${GEFAHRGUT.length}</span></button>` + klassen.map(k => `<button class="chip" data-k="${k}" aria-pressed="${GG.k === k}" title="${esc(GG_KLASSEN[k] || '')}">Klasse ${k}<span class="n">${GEFAHRGUT.filter(g => g.klasse === k).length}</span></button>`).join('');
   $$('#ggKlassen .chip').forEach(b => b.addEventListener('click', () => { GG.k = b.dataset.k; renderGG(); }));
-  const maxR = list.reduce((m, g) => Math.max(m, g.r), 0);
-  $('#ggKpis').innerHTML = `<div class="kpi"><div class="v num">${list.length}</div><div class="l">Stoffe</div></div><div class="kpi"><div class="v num">${list.filter(g => g.gew === 'hoch').length}</div><div class="l">Gewässergefährdung hoch</div></div><div class="kpi"><div class="v num">${maxR} m</div><div class="l">Größter Mindestradius</div></div>`;
+  const maxR = list.reduce((m, g) => Math.max(m, g.r), 0), maxB = list.reduce((m, g) => Math.max(m, g.rb || 0), 0);
+  $('#ggKpis').innerHTML = `<div class="kpi"><div class="v num">${list.length}</div><div class="l">Stoffe</div></div><div class="kpi"><div class="v num">${list.filter(g => g.gew === 'hoch').length}</div><div class="l">Gewässergefährdung hoch</div></div><div class="kpi"><div class="v num">${nf.format(maxR)} m</div><div class="l">Größter Mindestabstand sofort</div></div><div class="kpi"><div class="v num">${nf.format(maxB)} m</div><div class="l">Größter Mindestabstand Brand</div></div>`;
   const gc = {hoch: 'rot', mittel: 'orange', gering: 'ok'};
   $('#ggGrid').innerHTML = list.length ? list.map(g => `<article class="gg">
     <div class="plate" role="img" aria-label="Warntafel Gefahrnummer ${esc(g.kemler)}, UN ${g.un}"><div class="${g.kemler === '–' ? 'na' : ''}">${esc(g.kemler)}</div><div>${g.un}</div></div>
     <div style="min-width:0"><h3>${esc(g.name)}</h3>
       <div class="row"><span class="badge accent">UN ${g.un}</span><span class="badge">Klasse ${g.klasse} · ${esc(GG_KLASSEN[g.klasse] || '')}</span><span class="badge ${gc[g.gew]}">Gewässer ${g.gew}</span></div>
-      <div class="rad"><div><div class="l">Absperrung Leck</div><div class="v num">${nf.format(g.r)}<small> m</small></div></div><div><div class="l">Brand, Tankbeteiligung</div><div class="v num">${nf.format(g.rb)}<small> m</small></div></div></div>
-      <div class="water">${ic('drop')}<span><b>Mosel und Saar:</b> ${esc(g.gewT)}</span></div>
-      <div class="first"><b>Erstmaßnahmen Streife:</b> ${esc(g.erst)}</div></div></article>`).join('') : `<div class="empty" style="grid-column:1/-1"><b>Kein Treffer</b>Nach UN-Nummer (vier Ziffern), Gefahrnummer oder Stoffname suchen. Steht ein Stoff nicht im Katalog, gilt die Notfallhandbuch-Regel: Abstand, Notruf 112, Unfallmerkblatt.</div>`;
+      ${ggAbstand(g)}
+      <div class="water">${ic('drop')}<span><b>Mosel und Saar:</b> ${esc(g.gewT)}</span></div></div></article>`).join('') : `<div class="empty" style="grid-column:1/-1"><b>Kein Treffer</b>Nach UN-Nummer (vier Ziffern), Gefahrnummer oder Stoffname suchen. Steht ein Stoff nicht im Katalog, gilt nach ERG 2024 bei unbekanntem Stoff (Leitfaden 111) ein Mindestabstand von 100 m in alle Richtungen, bei Brand mit Tank 800 m.</div>`;
 }
 VIEWS.gefahrgut = () => { $('#ggSearch').addEventListener('input', e => { GG.q = e.target.value.trim(); renderGG(); }); renderGG(); };
 
