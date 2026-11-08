@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-BZw9EQi+Tg/LSpfM85FFrGmmYBY0VZ2Tz8souYQfYFM=' 'sha256-qPm8A0OSFKjw9RkveBF+aSVFjStzhPBOtObPR2476MU='; style-src 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src https://api.brightsky.dev https://maps.dwd.de https://www.pegelonline.wsv.de https://maps.mobilitaetsatlas.de https://api.rss2json.com; frame-src https://mobilitaetsatlas.de; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-24nz7NUL2OBof6zXNuurv1+M+UTjvaUjuNOJYBUVZHQ=' 'sha256-BZw9EQi+Tg/LSpfM85FFrGmmYBY0VZ2Tz8souYQfYFM='; style-src 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src https://api.brightsky.dev https://maps.dwd.de https://www.pegelonline.wsv.de https://maps.mobilitaetsatlas.de https://api.rss2json.com; frame-src https://mobilitaetsatlas.de; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#070a11">
@@ -627,7 +627,7 @@ table.tb tr:last-child td{border:0}
   .cockpit{gap:12px}
   .c-wx,.c-warn,.c-pegel,.c-vkl,.c-wx2{grid-column:span 12}
   .wx-temp{font-size:54px}
-  .frame-box{height:min(68dvh,640px)}.frame-box.l{height:min(82dvh,760px)}
+  .frame-box{height:min(56dvh,560px)}.frame-box.l{height:min(78dvh,720px)}
   .ev-grid,.gg-grid,.bl-grid,.cam-grid,.dir-grid{grid-template-columns:minmax(0,1fr)}
   .gg{grid-template-columns:minmax(0,1fr)}
   .plate{width:100%;display:grid;grid-template-columns:1fr 1fr}
@@ -854,6 +854,19 @@ a.lb-k:hover{background:var(--panel-2)}
 .lb-tgrp{width:20px;height:20px;margin-left:-10px;color:#fff;font:700 11px/16px Inter,system-ui,sans-serif;text-align:center;border-width:2px}
 .lb-tlpop{position:absolute;z-index:400;width:340px;max-width:90vw;max-height:260px;overflow:auto;background:var(--panel-solid);border:1px solid var(--line-2);border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.35);padding:6px}
 .c-vkl,.lb-mapcard{scroll-margin-top:calc(var(--top,64px) + 14px)}
+.pm-trenn{grid-column:1/-1;margin:8px 0 2px;padding:9px 12px;border-radius:10px;border:1px dashed var(--orange);background:var(--orange-soft);color:var(--text);font-size:12.5px;font-weight:600}
+.lz-maphint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1000;background:rgba(10,14,22,.82);color:#fff;font-size:13px;font-weight:600;padding:10px 14px;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .2s}
+.lz-maphint.on{opacity:1}
+.lz-ifcover{position:absolute;inset:0;z-index:6;display:flex;align-items:center;justify-content:center;background:rgba(10,14,22,.18);border:0;cursor:pointer}
+.lz-ifcover span{background:rgba(10,14,22,.85);color:#fff;font-size:13px;font-weight:650;padding:10px 14px;border-radius:10px}
+.lz-iflock{position:absolute;right:10px;bottom:10px;z-index:7}
+.lz-ifcover[hidden],.lz-iflock[hidden]{display:none!important}
+.lb-mleg .lb-legsub{font-weight:650;margin-top:2px}.lb-mleg img{vertical-align:middle;margin-right:5px}
+.fz-brisant{border:1px solid var(--rot);background:var(--rot-soft);border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.fz-bh{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin-bottom:6px}.fz-bh b{color:var(--rot);font-size:14px}.fz-bh span{font-size:12px;color:var(--muted)}
+.fz-bi{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1px 10px;padding:7px 4px;border-top:1px solid var(--line);color:var(--text);text-decoration:none!important}
+.fz-bi>.num{grid-row:span 3;font-size:12px;color:var(--muted);white-space:nowrap}.fz-bq{font-size:12px;color:var(--text-2)}.fz-bi b{font-size:13.5px}.fz-br{font-size:11.5px;color:var(--rot);font-weight:650}
+.fz-bi:hover{background:var(--panel-2)}.fz-bs{font-size:11px;color:var(--muted)}.fz-bh b[data-hilfe]{cursor:help}.fz-bf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
 .hilfe-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
 .hilfe-sec{border-top:1px solid var(--line);scroll-margin-top:calc(var(--top,64px) + 14px)}
 .hilfe-sec summary{cursor:pointer;font-weight:700;font-size:15px;padding:12px 2px;list-style:none;color:var(--text)}
@@ -4283,6 +4296,12 @@ const LAENDER = [
     "n": "Polizei Berlin, Zeugen gesucht",
     "nr": "https://www.berlin.de/polizei/polizeimeldungen/zeugen-gesucht/",
     "t": "f"
+   },
+   {
+    "u": "https://www.berlin.de/polizei/polizeimeldungen/index.php/rss",
+    "n": "Polizei Berlin, Polizeimeldungen",
+    "nr": "https://www.berlin.de/polizei/polizeimeldungen/",
+    "t": "p"
    }
   ],
   "pp": {
@@ -5580,7 +5599,33 @@ function fahndungItems() {
 const isDone = f => /rücknahme|zurückgenommen|widerruf|erledigt|wohlbehalten|aufgefunden|angetroffen|aufgeklärt/i.test(f.title + ' ' + (f.text || '')) ? 1 : 0;
 // Eigener Bereich zuerst: PP Trier, PD Trier, PD Wittlich, Bundespolizei Trier; dann Land und Nachbarn
 const homeRank = f => ['pp117701', 'pp117698', 'pp117697', 'pp70138'].includes(f.id) ? 0 : ['pp29763', 'pp120462', 'pp117715'].includes(f.id) ? 1 : 2;
-const FZ = {f: 6, p: 8, all: false};
+const FZ = {f: 6, p: 8, b: 5, all: false};
+// Fahndungen, Vermisste und Zeugenaufrufe ohne Rücknahme bleiben bis 60 Tage (Entscheidung Marc, 08.11.2026). Ab Tag 15 stehen sie unten mit Hinweis.
+const FZ_ALT_ARTEN = ['fahndung', 'vermisst', 'zeugen'];
+const PR_OHNE = ['fahndung', 'vermisst', 'ruecknahme', 'zeugen'];
+const fzAlt = x => Date.now() - x.f.date.getTime() >= 14 * 864e5 ? 1 : 0;
+const FZ_BRISANT_HILFE = 'Brisante Fälle sind Fahndungen und Vermisstenfälle, bei denen die Polizei in ihrer Meldung von einem schweren Verbrechen oder einer akuten Gefahr ausgeht. Erkannt werden diese Formulierungen in Überschrift oder Text:\n• Mordkommission ermittelt\n• Kapitalverbrechen oder Tötungsdelikt\n• Verbrechen nicht ausgeschlossen, Opfer eines Verbrechens\n• nicht freiwillig entfernt\n• Entführung\n• Belohnung ausgesetzt\n• hilflose Lage\n• vermisstes Kind bis 14 Jahre\nQuelle sind die Pressemeldungen der Polizeien, aus allen Bereichen bis deutschlandweit. Eine zentrale Liste von LKA oder BKA gibt es nicht.';
+const fzQuelle = f => { let h = ''; try { h = new URL(f.link).host.replace(/^www\./, ''); } catch (e) {} const n = {'presseportal.de': 'Presseportal (news aktuell)', 'berlin.de': 'Polizei Berlin (berlin.de)', 'police.public.lu': 'Police Grand-Ducale'}[h] || h; return (f.src ? f.src + ', ' : '') + n; };
+// Kasten „Brisante Fälle“: aus allen geladenen Meldungen (eigener Bereich, überregional, deutschlandweit), unabhängig vom Filter
+function fzBrisant(all, faAll) {
+  const seen = new Set(), L = [];
+  lbMeldungen(60).concat(faAll).forEach(x => { if (seen.has(x.f.link)) return; seen.add(x.f.link); const r = brisant(x.f); if (r.length) L.push({x, r}); });
+  L.sort((a, b) => b.x.f.date - a.x.f.date);
+  const lade = !LZ_SERVER && typeof LD !== 'undefined' && !LD.t && !LD.loading;
+  const when = d => d.toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit'}) + ' ' + fmtT(d);
+  return `<div class="fz-brisant"><div class="fz-bh"><b data-hilfe="${esc(FZ_BRISANT_HILFE)}" tabindex="0">Brisante Fälle ⓘ</b><span>${L.length} · Mordkommission, Kapitalverbrechen, Verbrechen nicht ausgeschlossen, vermisste Kinder, Belohnung, hilflose Lage</span></div>
+    ${L.length ? L.slice(0, FZ.b).map(({x, r}) => `<a class="fz-bi" href="${esc(x.f.link)}" target="_blank" rel="noopener noreferrer"><span class="num">${esc(when(x.f.date))}</span><span class="fz-bq">${esc(x.area === 'de' ? x.dst : (x.f.src || ''))}${x.ort && x.ort !== 'Ort nicht genannt' ? ' · ' + esc(x.ort) : ''}</span><b>${esc(x.f.title)}</b><span class="fz-br">${r.map(esc).join(' · ')}</span><span class="fz-bs">Quelle: ${esc(fzQuelle(x.f))}</span></a>`).join('') : '<div class="small muted">Derzeit kein Fall mit diesen Merkmalen in den geladenen Meldungen.</div>'}
+    <div class="fz-bf">${L.length > FZ.b ? `<button class="btn sm" data-more="b">Weitere ${L.length - FZ.b}</button>` : ''}${lade ? '<button class="btn sm primary" data-ldde="1">Deutschlandweit prüfen</button>' : ''}<a class="btn sm" href="https://www.bka.de/SiteGlobals/Forms/Suche/Fahndungsliste_Vermisste_Formular.html" target="_blank" rel="noopener noreferrer">BKA Vermisstenfälle</a><span class="small muted">Daten: Pressemeldungen der Polizeien, abgerufen aus Presseportal (news aktuell), Polizei Berlin (berlin.de), Fahndungsportalen der Länder und Police Grand-Ducale. Erkennung über Stichworte, eine zentrale amtliche Liste solcher Fälle gibt es nicht. Mehr unter Werkzeuge › Hilfe.</span></div></div>`;
+}
+function fzKarten(list, card) {
+  let trenn = false;
+  const card0 = card; card = x => { const r = brisant(x.f), h = card0(x); return r.length ? h.replace('<div class="pmmeta">', `<div class="pmmeta"><span class="badge rot" title="${esc(r.join(', '))}">brisant</span>`) : h; };
+  return list.map(x => {
+    if (!fzAlt(x)) return card(x);
+    const portal = !!x.f.fahndFeed, h = trenn ? '' : (trenn = true, '<div class="pm-trenn">Älter als 14 Tage und bisher nicht zurückgenommen. Ob die Fahndung noch läuft, ist nicht sicher: Stand vor Verwendung auf der Fahndungsseite oder bei der Pressestelle prüfen.</div>');
+    return h + card(x).replace('<div class="pmmeta">', `<div class="pmmeta"><span class="badge ${portal ? 'accent' : 'orange'} fz-alt" title="${portal ? 'Steht noch im Fahndungsportal des Landes' : 'Keine Rücknahme gefunden, Stand unbekannt'}">${portal ? 'im Fahndungsportal' : 'älter als 14 Tage'}</span>`);
+  }).join('');
+}
 function pressCard(f, mine, x) {
   const p = PRESSE.find(x => x.id === f.id) || {}, ort = (x && x.ort && x.ort !== 'Ort nicht genannt') ? x.ort : pressOrt(f), tx = pressText(f), isF = FAHND_RE.test(f.title + ' ' + (f.land ? (f.ft || '') : '')), k0 = isF ? fahndKind(f.title + ' ' + (f.ft || '')) : null;
   const ai = x && typeof lbArtInfo === 'function' ? lbArtInfo(x.art) : null, k = ai ? (x.art === 'meldung' ? null : [ai[1], {fahndung: 'rot', vermisst: 'orange', ruecknahme: 'ok', zeugen: 'orange', eigentuemer: 'accent'}[x.art] || '']) : k0;
@@ -5604,20 +5649,22 @@ function renderFeedCards() {
     fb.innerHTML = `<div class="small muted">Die Pressemeldungen sind noch nicht geladen oder der Abruf ist gestört. Direkt öffnen:</div><div class="pmmore">${chips}</div>`;
     pb.innerHTML = `<div class="small muted">Noch keine Meldungen geladen.</div><div class="pmmore"><a class="btn sm primary" href="#blaulicht" data-goto="blaulicht">${ic('siren')}Blaulicht öffnen</a></div>`;
   } else {
-    const all = lbMeldungen(14), faAll = all.filter(x => x.art !== 'meldung').concat(lbLaenderMeldungen()), prAll = all.filter(x => Date.now() - x.f.date.getTime() < 7 * 864e5);
-    const fa = lbApply('fa', faAll), hid = lbApply('pr', prAll).filter(x => isRoutine(x.f)).length, pl = lbApply('pr', prAll).filter(x => RT.show || !isRoutine(x.f));
+    const all = lbMeldungen(14), faAll = lbMeldungen(60).filter(x => x.art !== 'meldung' && (!fzAlt(x) || FZ_ALT_ARTEN.includes(x.art))).concat(lbLaenderMeldungen()), prAll = all.filter(x => Date.now() - x.f.date.getTime() < 7 * 864e5 && !PR_OHNE.includes(x.art));
+    const fa = lbApply('fa', faAll).sort((a, b) => fzAlt(a) - fzAlt(b) || b.f.date - a.f.date), hid = lbApply('pr', prAll).filter(x => isRoutine(x.f)).length, pl = lbApply('pr', prAll).filter(x => RT.show || !isRoutine(x.f));
     const card = x => pressCard(x.f, false, x);
-    fb.innerHTML = note + lbFilterBar('fa', faAll, true, LB_ARTEN.filter(a => a[0] !== 'meldung'), LB_BEREICHE.concat([['de', 'Deutschlandweit']]))
-      + (fa.length ? `<div class="pmgrid">${fa.slice(0, FZ.f).map(card).join('')}</div>` : '<div class="small muted">Keine Fahndung, Vermisstensuche, Rücknahme oder Zeugenaufruf für diese Auswahl (Pressemeldungen der letzten 14 Tage, deutschlandweit bis 120 Tage). Fahndungen, die nur auf den Fahndungsseiten stehen, etwa beim BKA, fehlen hier.</div>')
-      + `<div class="pmmore">${fa.length > FZ.f ? `<button class="btn sm primary" data-more="f">Weitere ${fa.length - FZ.f} anzeigen</button>` : ''}${chips}</div>`;
-    pb.innerHTML = note + lbFilterBar('pr', prAll)
+    fb.innerHTML = note + fzBrisant(all, faAll) + lbFilterBar('fa', faAll, true, LB_ARTEN.filter(a => a[0] !== 'meldung'), LB_BEREICHE.concat([['de', 'Deutschlandweit']]))
+      + (fa.length ? `<div class="pmgrid">${fzKarten(fa.slice(0, FZ.f), card)}</div>` : '<div class="small muted">Keine Fahndung, Vermisstensuche, Rücknahme oder Zeugenaufruf für diese Auswahl (Fahndungen, Vermisste und Zeugenaufrufe ohne Rücknahme bis 60 Tage, Fahndungsportale der Länder bis 120 Tage). Fahndungen, die nur auf den Fahndungsseiten stehen, etwa beim BKA, fehlen hier.</div>')
+      + `<div class="pmmore">${fa.length > FZ.f ? `<button class="btn sm primary" data-more="f">Weitere ${Math.min(12, fa.length - FZ.f)} anzeigen</button>` : ''}${fa.length > FZ.f + 12 ? `<button class="btn sm" data-more="alle">Alle ${fa.length} anzeigen</button>` : ''}${chips}</div>`;
+    if (!['alle', 'eigentuemer', 'meldung'].includes(lbFl('pr').k)) lbFl('pr').k = 'alle';
+    pb.innerHTML = note + lbFilterBar('pr', prAll, true, LB_ARTEN.filter(a => !PR_OHNE.includes(a[0])))
       + (pl.length ? `<div class="small muted" style="margin-bottom:8px">${pl.length} Meldung${pl.length === 1 ? '' : 'en'} der letzten 7 Tage</div><div class="pmgrid">${pl.slice(0, FZ.p).map(card).join('')}</div>` : '<div class="small muted">Keine Meldung für diese Auswahl in den letzten 7 Tagen.</div>')
       + `<div class="pmmore">${pl.length > FZ.p ? `<button class="btn sm primary" data-more="p">Weitere ${pl.length - FZ.p} anzeigen</button>` : ''}${hid || RT.show ? `<button class="btn sm" data-rt="1">${RT.show ? 'Routinemeldungen ausblenden' : hid + ' Routinemeldung' + (hid === 1 ? '' : 'en') + ' ausgeblendet, einblenden'}</button>` : ''}<a class="btn sm" href="#blaulicht" data-goto="blaulicht">${ic('siren')}Alle Pressemeldungen und Portale</a></div>`;
     lbBindBar(fb, () => { FZ.f = 6; renderFeedCards(); }); lbBindBar(pb, () => { FZ.p = 8; renderFeedCards(); });
   }
-  $$('[data-more]', $('#fahndCard')).concat($$('[data-more]', $('#presseCard'))).forEach(b => b.addEventListener('click', () => { FZ[b.dataset.more] += 12; renderFeedCards(); }));
+  $$('[data-more]', $('#fahndCard')).concat($$('[data-more]', $('#presseCard'))).forEach(b => b.addEventListener('click', () => { if (b.dataset.more === 'alle') FZ.f = 10000; else FZ[b.dataset.more] += 12; renderFeedCards(); }));
   $$('[data-goto]', $('#fahndCard')).concat($$('[data-goto]', $('#presseCard'))).forEach(a => a.addEventListener('click', e => { e.preventDefault(); go(a.dataset.goto); }));
   $$('[data-rt]', $('#presseCard')).forEach(b => b.addEventListener('click', () => setRoutine(!RT.show)));
+  $$('[data-ldde]', $('#fahndCard')).forEach(b => b.addEventListener('click', () => { b.disabled = true; b.textContent = 'wird geladen …'; loadLaender(); if (!LD.auto) LD.auto = setInterval(loadLaender, 30 * 60 * 1000); }));
   $$('[data-sc]', $('#fahndCard')).concat($$('[data-sc]', $('#presseCard'))).forEach(b => b.addEventListener('click', () => { FZ.all = b.dataset.sc === 'a'; FZ.f = 6; FZ.p = 8; renderFeedCards(); }));
   if (typeof updateSums === 'function') updateSums();
 }
@@ -5859,6 +5906,27 @@ function vklLoad() {
   document.addEventListener('touchend', () => { clearTimeout(t); if (tip) setTimeout(hide, 5000); }, {passive: true});
   ['scroll', 'keydown', 'mousedown'].forEach(ev => addEventListener(ev, () => { if (tip || t) hide(); }, true));
 })();
+
+/* ---------- Handy: ein Finger scrollt die Seite, zwei Finger verschieben und zoomen die Karte ---------- */
+const LZ_TOUCH = matchMedia('(pointer: coarse)').matches;
+if (typeof L !== 'undefined' && LZ_TOUCH) L.Map.addInitHook(function () {
+  const m = this, el = m.getContainer();
+  m.dragging.disable();
+  const hint = L.DomUtil.create('div', 'lz-maphint', el); hint.textContent = 'Karte mit zwei Fingern verschieben';
+  let t = 0;
+  el.addEventListener('touchmove', e => { if (e.touches.length === 1) { hint.classList.add('on'); clearTimeout(t); t = setTimeout(() => hint.classList.remove('on'), 1300); } }, {passive: true});
+});
+// Eingebettete Verkehrskarte: am Handy erst nach Antippen bedienbar, damit man an ihr vorbeiscrollen kann
+function lzFrameCover(box) {
+  if (!LZ_TOUCH || !box || box.querySelector('.lz-ifcover')) return;
+  const c = document.createElement('button'); c.type = 'button'; c.className = 'lz-ifcover'; c.innerHTML = '<span>Antippen, um die Karte zu bedienen</span>';
+  const lock = document.createElement('button'); lock.type = 'button'; lock.className = 'btn sm lz-iflock'; lock.textContent = 'Karte sperren'; lock.hidden = true;
+  c.addEventListener('click', () => { c.hidden = true; lock.hidden = false; });
+  lock.addEventListener('click', () => { c.hidden = false; lock.hidden = true; });
+  box.append(c, lock);
+  if ('IntersectionObserver' in window) new IntersectionObserver(en => { if (en.every(x => !x.isIntersecting)) { c.hidden = false; lock.hidden = true; } }).observe(box);
+}
+document.addEventListener('DOMContentLoaded', () => lzFrameCover(document.getElementById('vklBox')));
 
 /* ---------- Karten: Größe ziehen, ein- und ausklappen ---------- */
 const CARD_KEYS = ['c-wx', 'c-warn', 'c-pegel', 'c-fahnd', 'c-presse', 'c-vkl', 'c-wx2', 'c-sys'];
@@ -6475,7 +6543,7 @@ const TAKTIK = [
    Lagebild (neues Cockpit): Kennzahlen, Lagestufe, Lage-Ticker, Lagekarte, Heute
    Nur echte Daten aus öffentlichen Quellen. Fehlt eine Quelle, steht das dort.
    ========================================================================== */
-const LB = {lbm: null, lbmErr: null, ab: null, abErr: null, temp: null, peg: {}, map: null, base: null, lay: {}, filt: 'alle', on: Object.assign({}, store.get('lb.lay', {bez: true, warn: true, ab: true, peg: true, ev: true})), sig: ''};
+const LB = {lbm: null, lbmErr: null, ab: null, abErr: null, temp: null, peg: {}, map: null, base: null, lay: {}, filt: 'alle', on: Object.assign({lbmw: true}, store.get('lb.lay', {bez: true, warn: true, ab: true, peg: true, ev: true})), sig: ''};
 const LB_SPERRE = new RegExp(['eh', 'rang'].join(''), 'i');
 const LB_ROADS = ['A1', 'A48', 'A60', 'A64', 'A64a', 'A602'];
 const LB_DAY = 864e5;
@@ -6506,6 +6574,22 @@ function lbContact() {
 /* LBM Rheinland-Pfalz, Mobilitätsatlas: Arbeitsstellen und Sperrungen der Verkehrsbehörden RLP und der Autobahn GmbH, offener WFS.
    Autobahn-Einträge landen in LB.ab (gleiche Form wie früher), alle anderen in LB.lbm. */
 const LB_LBM_WFS = 'https://maps.mobilitaetsatlas.de/geoserver/ows';
+const LB_LBM_WMS = 'https://maps.mobilitaetsatlas.de/geoserver/wms';
+const LB_LBM_TYP = {B: 'Arbeitsstelle', C: 'Ampelregelung', F: 'Einbahnregelung', G: 'Vollsperrung', N: 'Sperrung für Lkw'};
+const lbLbmLeg = r => `${LB_LBM_WMS}?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=mwvlw:baustelle&RULE=${r}&WIDTH=18&HEIGHT=18`;
+// Antippen eines Originalzeichens: Angaben beim Kartendienst des LBM abfragen (auch geplante Maßnahmen und außerhalb des PP)
+async function lbLbmAt(e) {
+  const m = LB.map, sz = m.getSize(), b = m.getBounds(), p = e.containerPoint;
+  const url = `${LB_LBM_WMS}?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&LAYERS=mwvlw:baustelle&QUERY_LAYERS=mwvlw:baustelle&INFO_FORMAT=application/json&FEATURE_COUNT=4&CRS=EPSG:4326&BBOX=${[b.getSouth(), b.getWest(), b.getNorth(), b.getEast()].map(v => v.toFixed(6)).join(',')}&WIDTH=${sz.x}&HEIGHT=${sz.y}&I=${Math.round(p.x)}&J=${Math.round(p.y)}&BUFFER=10`;
+  let fs = [];
+  try { fs = ((await getJSON(url, 10000)).features || []).filter(f => f.properties && !LB_SPERRE.test(JSON.stringify(f.properties))); } catch (err) { return false; }
+  if (!fs.length) return false;
+  const d = s => { const x = new Date(s); return isNaN(x) ? '' : lbFmtD(x); };
+  const html = fs.map(f => { const q = f.properties, t = String(q.typ || ''), gp = /_GEPLANT$/.test(t);
+    return `<b>${esc(lbStr(q.strasse || ''))}: ${esc(LB_LBM_TYP[t.replace('_GEPLANT', '')] || 'Maßnahme')}${gp ? ' (geplant)' : ''}</b><br>${esc(String(q.art_der_arbeiten || '').trim())}<br>${esc(d(q.von))} bis ${esc(d(q.bis))}${q.speedlimit ? '<br>Höchstgeschwindigkeit ' + esc(q.speedlimit) + ' km/h' : ''}${q.beschreibung ? '<br><small>' + esc(String(q.beschreibung).slice(0, 320)) + '</small>' : ''}`; }).join('<hr>');
+  L.popup({maxWidth: 330}).setLatLng(e.latlng).setContent('<div class="lb-wpop">' + html + '<br><small>Quelle: LBM RLP (Mobilitätsatlas)</small></div>').openOn(m);
+  return true;
+}
 const lbFmtD = d => d.toLocaleString('de-DE', {day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit'});
 const lbStr = s => { s = String(s || '').trim(); if (/^G$/i.test(s)) return 'Gemeindestraße'; if (/^T$/i.test(s)) return 'Straße'; const m = s.match(/^([ABLK])\s*(\d+\w*)$/i); return m ? m[1].toUpperCase() + ' ' + m[2] : s; };
 function lbLbmKat(p) {
@@ -6635,7 +6719,7 @@ function lbHilfeBereich(k, mitDe) {
   if (k === 'pdtrier') return 'Polizeidirektion Trier: ' + lbPdListe('pdtrier') + '.';
   if (k === 'pdwittlich') return 'Polizeidirektion Wittlich: ' + lbPdListe('pdwittlich') + '.';
   if (k === 'ueber') return 'Meldungen mit Ort außerhalb des PP Trier aus diesen Quellen:\n' + lbUeberQuellen() + '\nFrankreich (Präfektur Moselle, Gendarmerie) und die Föderale Polizei Belgiens bieten keinen abrufbaren Feed, dafür gibt es Links im Blaulicht-Bereich.';
-  if (k === 'de') { const pf = (typeof LAENDER !== 'undefined' ? LAENDER : []).filter(l => l.k !== 'bund' && l.feeds.some(f => f.t === 'f')).map(l => l.n); return 'Fahndungen, Vermisste und Zeugenaufrufe aus allen anderen Ländern: Presseportal-Feeds der Landespolizeien' + (pf.length ? ', eigene Fahndungsportale (' + pf.join(', ') + ')' : '') + ' und die bundesweite Liste „Öffentlichkeitsfahndungen“ des Presseportals. Je Land die neuesten 8, laufende Fahndungen bis 120 Tage. ' + (LZ_SERVER ? 'Wird nach dem Start im Hintergrund geladen.' : 'Wird beim ersten Antippen geladen, das dauert etwa eine halbe Minute.') + ' Das BKA bietet keinen Feed, Link „BKA Fahndungen“ unten.'; }
+  if (k === 'de') { const pf = (typeof LAENDER !== 'undefined' ? LAENDER : []).filter(l => l.k !== 'bund' && l.feeds.some(f => f.t === 'f')).map(l => l.n); return 'Fahndungen, Vermisste und Zeugenaufrufe aus allen anderen Ländern: Presseportal-Feeds der Landespolizeien' + (pf.length ? ', eigene Fahndungsportale (' + pf.join(', ') + ')' : '') + ' und die bundesweite Liste „Öffentlichkeitsfahndungen“ des Presseportals. Je Land die neuesten 8: aus Fahndungsportalen bis 120 Tage, aus Pressemeldungen bis 60 Tage, solange keine Rücknahme kommt. ' + (LZ_SERVER ? 'Wird nach dem Start im Hintergrund geladen.' : 'Wird beim ersten Antippen geladen, das dauert etwa eine halbe Minute.') + ' Das BKA bietet keinen Feed, Link „BKA Fahndungen“ unten.'; }
   return '';
 }
 const LB_HILFE_ART = {alle: 'Alle Arten zusammen.', fahndung: 'Öffentlichkeitsfahndungen nach Tatverdächtigen: Der Titel nennt Fahndung, Haftbefehl, Lichtbild oder „gesucht“.', vermisst: 'Vermisstensuchen: Der Titel nennt vermisst oder abgängig.',
@@ -6860,7 +6944,7 @@ function lbKpis() {
 
 function lbTickerItems() {
   const it = [], ids = new Set((typeof PRESSE !== 'undefined' ? PRESSE : []).filter(p => p.g === 'rlp' && /Trier|Wittlich/.test(p.n)).map(p => p.id));
-  lbMeldungen(7).slice(0, 80).forEach(x => it.push({d: x.f.date, cat: 'presse', src: lbArtInfo(x.art)[1], col: x.art === 'meldung' ? '' : lbArtInfo(x.art)[2], txt: x.f.title, link: x.f.link, ort: x.ort, dst: x.dst, area: x.area}));
+  lbMeldungen(7).forEach(x => it.push({d: x.f.date, cat: 'presse', src: lbArtInfo(x.art)[1], col: x.art === 'meldung' ? '' : lbArtInfo(x.art)[2], txt: x.f.title, link: x.f.link, ort: x.ort, dst: x.dst, area: x.area}));
   (lbAlerts() || []).forEach(a => it.push({d: new Date(a.onset || a.effective || Date.now()), cat: 'wetter', src: 'DWD', col: LB_SEVC[LB_SEV[a.severity] || 1], txt: `${(SEV[a.severity] || {}).t || ''}: ${a.headline_de || a.event_de}${a.expires ? ' (bis ' + fmtDT(new Date(a.expires)) + ')' : ''}`, ort: (a.sites || []).join(', ') || 'Bereich PP Trier', dst: 'Deutscher Wetterdienst', area: 'pp'}));
   lbLbmIn().filter(x => x.kat === 'voll' && Date.now() - x.von < 2 * LB_DAY).forEach(x => it.push({d: x.von, cat: 'verkehr', src: x.str, col: '#ff5a5f', txt: `Vollsperrung: ${x.str}${x.desc ? ', ' + x.desc.slice(0, 140) + (x.desc.length > 140 ? ' …' : '') : ''} (bis ${fmtDT(x.bis)})`, ort: x.str, dst: lbDstName(x.bez), area: LB_PD[x.bez] || 'pp'}));
   if (LB.ab) LB.ab.items.filter(x => lbInScope(x.bez) && x.typ !== 'roadworks').forEach(x => it.push({d: x.start || new Date(LB.ab.t), cat: 'verkehr', src: x.road, col: x.typ === 'warning' || x.blocked ? '#ff5a5f' : '#f5a524', txt: `${x.typ === 'warning' ? 'Warnung' : x.blocked ? 'Vollsperrung' : 'Sperrung'}: ${x.title}`, ort: x.sub || x.road, dst: lbDstName(x.bez) + ' (Gebiet)', area: LB_PD[x.bez] || 'pp'}));
@@ -6873,7 +6957,7 @@ function lbTicker() {
   const seen = store.get('lb.seen', 0), all0 = lbTickerItems(), all = lbApply('tick', all0, false);
   const F = [['alle', 'Alle'], ['verkehr', 'Verkehr'], ['wetter', 'Wetter'], ['presse', 'Presse'], ['wasser', 'Wasser']];
   const CC = {presse: 'var(--muted)', wetter: '#f5a524', verkehr: '#ff5a5f', wasser: '#5dade2'};
-  const list = all.filter(x => LB.filt === 'alle' || x.cat === LB.filt).slice(0, 40);
+  const list = all.filter(x => LB.filt === 'alle' || x.cat === LB.filt).slice(0, 500);
   return lbFilterBar('tick', all0, false) + `<div class="lb-chips">${F.map(([k, n]) => `<button class="chip" data-lbf="${k}" aria-pressed="${LB.filt === k}" data-hilfe="${esc(LB_HILFE_TICK[k] || '')}">${n} <span class="lb-cnt">${k === 'alle' ? all.length : all.filter(x => x.cat === k).length}</span></button>`).join('')}</div>
     <div class="lb-tk">${list.length ? list.map(x => `<div class="lb-ti"><span class="lb-tt num">${x.d.toDateString() === new Date().toDateString() ? fmtT(x.d) : x.d.toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit'})}</span><div><div class="lb-od"><b>${esc(x.ort || '')}</b>${x.dst ? ' · ' + esc(x.dst) : ''}</div><span class="lb-tag" style="background:${x.col || CC[x.cat]}">${esc(x.src)}</span>${x.link ? `<a href="${esc(x.link)}" target="_blank" rel="noopener noreferrer">${esc(x.txt)}</a>` : esc(x.txt)}${seen && +x.d > seen ? '<span class="lb-neu">NEU</span>' : ''}</div></div>`).join('') : '<div class="lb-empty">Keine Meldungen in dieser Auswahl.</div>'}</div>`;
 }
@@ -6955,12 +7039,12 @@ function lbMapInit() {
   if (LB.map || typeof L === 'undefined' || (typeof IS_ARTIFACT !== 'undefined' && IS_ARTIFACT)) return;
   const el = $('#lbMap'); if (!el || !el.offsetWidth) return;
   const m = LB.map = L.map(el, {zoomControl: true, zoomSnap: .25, preferCanvas: false, scrollWheelZoom: true}).setView([49.95, 6.9], 9);
-  LB.base = L.tileLayer(lbTopUrl(S.ms.lb), {maxZoom: 17, attribution: LB_ATTR + ' · DWD · PEGELONLINE'}).addTo(m);
+  LB.base = L.tileLayer(lbTopUrl(S.ms.lb), {maxZoom: 17, attribution: LB_ATTR + ' · DWD · LBM RLP (Mobilitätsatlas) · PEGELONLINE'}).addTo(m);
   m.getContainer().classList.toggle('wxdark', S.ms.lb === 'dunkel');
   const lg = L.control({position: 'bottomleft'});
-  lg.onAdd = () => { const d = L.DomUtil.create('div', 'lb-mleg'); d.innerHTML = '<b>Legende</b><span><i style="background:linear-gradient(90deg,#ffeb3b,#fb8c00,#e53935,#8e24aa)"></i>DWD-Warnung (Gelb bis Violett nach Stufe)</span><span><i style="background:#1e6fd9;border-radius:50%"></i>Pegel</span><span><i style="background:#7c5ce0;border-radius:50%"></i>Veranstaltung heute</span>'; L.DomEvent.disableClickPropagation(d); return d; };
+  lg.onAdd = () => { const d = L.DomUtil.create('div', 'lb-mleg'); d.innerHTML = '<b>Legende</b>' + (LB.on.lbmw ? '<span class="lb-legsub">LBM (Originalzeichen, grau = geplant):</span>' + [['B', 'Arbeitsstelle'], ['C', 'Ampelregelung'], ['F', 'Einbahnregelung'], ['G', 'Vollsperrung'], ['N', 'Sperrung für Lkw']].map(([r, n]) => `<span><img src="${lbLbmLeg(r)}" alt="" width="16" height="16" referrerpolicy="no-referrer">${n}</span>`).join('') : '') + '<span><i style="background:linear-gradient(90deg,#ffeb3b,#fb8c00,#e53935,#8e24aa)"></i>DWD-Warnung (Gelb bis Violett nach Stufe)</span><span><i style="background:#1e6fd9;border-radius:50%"></i>Pegel</span><span><i style="background:#7c5ce0;border-radius:50%"></i>Veranstaltung heute</span>'; L.DomEvent.disableClickPropagation(d); return d; };
   lg.addTo(m);
-  m.on('click', e => { if (!LB.on.warn) return; const t = e.originalEvent && e.originalEvent.target; if (t && t.classList && t.classList.contains('leaflet-interactive')) return; lbWarnAt(e.latlng); });
+  m.on('click', async e => { if (LB.on.lbmw && await lbLbmAt(e)) return; if (!LB.on.warn) return; const t = e.originalEvent && e.originalEvent.target; if (t && t.classList && t.classList.contains('leaflet-interactive')) return; lbWarnAt(e.latlng); });
   ['mousedown', 'touchstart'].forEach(ev => el.addEventListener(ev, () => { LB.moved = true; }, {passive: true}));
   new ResizeObserver(() => { m.invalidateSize(); if (!LB.moved) lbMapLayers(true); }).observe(el);
   lbMapLayers(true);
@@ -6972,6 +7056,7 @@ function lbMapLayers(fit) {
   if (LB.on.bez && typeof BEZIRK_GEO !== 'undefined') {
     LB.lay.bez = L.layerGroup(Object.keys(BEZIRK_GEO).map(k => { const r = LB_RINGS[k] || (LB_RINGS[k] = lbRing(k)); if (!r) return null; const sel = S.dst !== 'pp' && k === mk; return L.polygon(r, {color: sel ? '#ff8c1a' : '#1f5eff', weight: sel ? 3 : 1.4, opacity: .9, fillOpacity: sel ? .08 : .02, interactive: false}); }).filter(Boolean)).addTo(m);
   }
+  if (LB.on.lbmw) LB.lay.lbmw = L.tileLayer.wms(LB_LBM_WMS, {layers: 'mwvlw:verlauf,mwvlw:baustelle', format: 'image/png', transparent: true, version: '1.3.0', zIndex: 5}).addTo(m);
   if (LB.on.warn) LB.lay.warn = L.tileLayer.wms('https://maps.dwd.de/geoserver/dwd/wms', {layers: 'dwd:Warnungen_Gemeinden', format: 'image/png', transparent: true, version: '1.3.0', opacity: .55}).addTo(m);
   if (LB.on.peg) {
     LB.lay.peg = L.layerGroup(Object.values(LB.peg).filter(p => p.lat && p.lon).map(p => L.circleMarker([p.lat, p.lon], {radius: 7, color: '#fff', weight: 2, fillColor: '#1e6fd9', fillOpacity: 1}).bindTooltip(`${esc(p.n)}: ${p.cur ? (p.cur.value / 100).toLocaleString('de-DE', {minimumFractionDigits: 2}) + ' m, ' + fmtT(new Date(p.cur.timestamp)) : 'kein Wert'}`, {direction: 'top'}))).addTo(m);
@@ -6980,7 +7065,7 @@ function lbMapLayers(fit) {
     LB.lay.ev = L.layerGroup(lbEventsOn(today).filter(e => e.lat && e.lon).map(e => L.circleMarker([e.lat, e.lon], {radius: Math.max(5, Math.min(14, Math.sqrt(e.bes || 100) / 6)), color: '#fff', weight: 1.5, fillColor: '#7c5ce0', fillOpacity: .85}).bindPopup(`<b>${esc(e.name)}</b><br>${esc(e.ort || '')}${e.vo ? ' · ' + esc(e.vo) : ''}<br>${e.bes ? 'ca. ' + lbNum(e.bes) + ' Besucher (' + (e.besS === 'schaetzung' ? 'geschätzt' : 'belegt') + ')' : ''}<br><small>${esc(lbDstName(e.dst))}</small>`))).addTo(m);
   }
   if (fit) {
-    const r = S.dst !== 'pp' ? (LB_RINGS[mk] || lbRing(mk)) : null;
+    const r = null; // Sicht immer auf das ganze PP Trier (Wunsch Marc, 08.11.2026)
     if (r) m.fitBounds(L.latLngBounds(r), {padding: [16, 16]});
     else if (typeof BEZIRK_GEO !== 'undefined') { const all = []; Object.keys(BEZIRK_GEO).forEach(k => { const rr = LB_RINGS[k] || (LB_RINGS[k] = lbRing(k)); if (rr) all.push(...rr); }); if (all.length) m.fitBounds(L.latLngBounds(all), {padding: [10, 10]}); }
   }
@@ -7066,9 +7151,9 @@ function lbFocus(kind, road) {
     } catch (e) { console.warn('Fokus Lagekarte:', e); }
   }, 380);
 }
-const LB_HILFE_MAP = {warn: 'Warnflächen des Deutschen Wetterdienstes, Farbe nach Warnstufe. Auf die Karte tippen fragt die Warnung an dieser Stelle ab.', peg: 'Pegelstellen an Mosel und Saar (PEGELONLINE) mit aktuellem Wasserstand.', ev: 'Veranstaltungen aus dem Kalender, die heute stattfinden. Je größer der Punkt, desto mehr Besucher.', bez: 'Grenzen der Dienstbezirke nach der Landesverordnung. Der gewählte Bezirk ist orange umrandet.'};
+const LB_HILFE_MAP = {lbmw: 'Arbeitsstellen, Ampelregelungen, Einbahnregelungen, Vollsperrungen und Lkw-Sperrungen des Landesbetriebs Mobilität RLP mit dessen Originalzeichen, auch über die Grenzen des PP hinaus. Grau: geplant. Rote Linie: Verlauf. Zeichen antippen zeigt Einzelheiten.', warn: 'Warnflächen des Deutschen Wetterdienstes, Farbe nach Warnstufe. Auf die Karte tippen fragt die Warnung an dieser Stelle ab.', peg: 'Pegelstellen an Mosel und Saar (PEGELONLINE) mit aktuellem Wasserstand.', ev: 'Veranstaltungen aus dem Kalender, die heute stattfinden. Je größer der Punkt, desto mehr Besucher.', bez: 'Grenzen der Dienstbezirke nach der Landesverordnung. Der gewählte Bezirk ist orange umrandet.'};
 function lbMapChips() {
-  const D = [['warn', 'DWD-Warnungen', 'linear-gradient(90deg,#ffeb3b,#fb8c00,#e53935,#8e24aa)'], ['peg', 'Pegel', '#1e6fd9'], ['ev', 'Veranstaltungen heute', '#7c5ce0'], ['bez', 'Dienstbezirke', '#1f5eff']];
+  const D = [['lbmw', 'Baustellen und Sperrungen (LBM)', 'linear-gradient(90deg,#d0021b,#fff)'], ['warn', 'DWD-Warnungen', 'linear-gradient(90deg,#ffeb3b,#fb8c00,#e53935,#8e24aa)'], ['peg', 'Pegel', '#1e6fd9'], ['ev', 'Veranstaltungen heute', '#7c5ce0'], ['bez', 'Dienstbezirke', '#1f5eff']];
   return D.map(([k, n, c]) => `<button class="chip" data-lbl="${k}" aria-pressed="${!!LB.on[k]}" data-hilfe="${esc(LB_HILFE_MAP[k] || '')}"><i class="lb-dot" style="background:${c}"></i>${n}</button>`).join('');
 }
 function lbStyleSeg(map) { return [['hell', 'Weiß-Blau'], ['grau', 'Grau'], ['dunkel', 'Dunkel']].map(([k, n]) => `<button data-ms="${k}" aria-pressed="${S.ms[map] === k}">${n}</button>`).join(''); }
@@ -7201,19 +7286,19 @@ function wzHilfe(el) {
   const feeds = P.filter(p => p.rss).length;
   const sec = (id, t, body, open = false) => `<details class="hilfe-sec" id="hilfe-${id}"${open ? ' open' : ''}><summary>${t}</summary><div class="hilfe-b">${body}</div></details>`;
   const dl = rows => `<dl class="hilfe-dl">${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`;
-  const nav = [['start', 'Überblick'], ['bereiche', 'Bereiche'], ['lagebild', 'Lagebild'], ['lagekarte', 'Lagekarte'], ['ticker', 'Ticker und Pressemeldungen'], ['filter', 'Filter: PP Trier, Überregional, Deutschlandweit'], ['arten', 'Meldungsarten'], ['zeit', 'Zeiträume'], ['termine', 'Veranstaltungen'], ['verkehr', 'Verkehr'], ['wetter', 'Wetter und Pegel'], ['ds', 'Datenschutz']];
+  const nav = [['start', 'Überblick'], ['bereiche', 'Bereiche'], ['lagebild', 'Lagebild'], ['lagekarte', 'Lagekarte'], ['ticker', 'Ticker und Pressemeldungen'], ['brisant', 'Brisante Fälle'], ['filter', 'Filter: PP Trier, Überregional, Deutschlandweit'], ['arten', 'Meldungsarten'], ['zeit', 'Zeiträume'], ['termine', 'Veranstaltungen'], ['verkehr', 'Verkehr'], ['wetter', 'Wetter und Pegel'], ['ds', 'Datenschutz']];
   el.innerHTML = `<article class="card pad hilfe">
   <div class="hilfe-nav">${nav.map(([k, n]) => `<button class="chip" data-hj="${k}">${n}</button>`).join('')}</div>
   <p class="small muted">Tipp: Bleibt die Maus 2 Sekunden auf einem Filterknopf, erscheint eine Erklärung, was darunter fällt. Am Handy den Knopf lange drücken.</p>
   ${sec('start', 'Überblick', `<p>Das Lagezentrum bündelt öffentlich zugängliche Informationen für den Bereich des Polizeipräsidiums Trier: Wetter und amtliche Warnungen, Pegel, Verkehr, Pressemeldungen und Fahndungen der Polizei, Veranstaltungen sowie Nachschlagewerke für den Streifendienst. Es verwendet keine polizeilichen Systeme und keine personenbezogenen Daten außer denen, die die Polizei selbst veröffentlicht.</p>
-    <p>Jede Zahl trägt Quelle und Stand. Live-Daten werden beim Öffnen und danach regelmäßig neu abgerufen: Wetter, Warnungen, Pressemeldungen und Verkehr alle 10 Minuten, Pegel alle 5 bis 15 Minuten, Fahndungen der anderen Länder alle 30 Minuten. Das Lagebild zeichnet sich jede Minute neu. Oben links wählt man die Dienststelle, dann zeigen Lagebild, Wetter, Warnungen und Meldungen nur deren Bereich.</p>`, true)}
+    <p>Jede Zahl trägt Quelle und Stand. Live-Daten werden beim Öffnen und danach regelmäßig neu abgerufen: Wetter, Warnungen, Pressemeldungen und Verkehr alle 10 Minuten, Pegel alle 5 bis 15 Minuten, Fahndungen der anderen Länder alle 30 Minuten. Das Lagebild zeichnet sich jede Minute neu. Oben links wählt man die Dienststelle, dann zeigen Lagebild, Wetter, Warnungen und Meldungen nur deren Bereich. Beim Aufruf öffnet sich immer das Cockpit, ganz oben.</p>`, true)}
   ${sec('bereiche', 'Die Bereiche in der Menüleiste', dl([
     ['Cockpit', 'Lagebild mit Kennzahlen, Lagekarte, Lage-Ticker, Zeitleiste „Die nächsten 24 Stunden“, darunter Verkehr und Baustellen, Wetterkarte, Wetter, Lage, Pegel, Fahndungen und Vermisste, Pressemeldungen und amtliche Warnsysteme.'],
     ['Termine', `Veranstaltungskalender mit ${ev.length} Veranstaltungen im Bereich des PP Trier, siehe „Veranstaltungen“.`],
     ['Gefahrgut', 'Schnellabfrage nach UN-Nummer, Gefahrnummer oder Stoffname mit Absperrabständen nach ERG 2024 und Hinweisen zu Mosel und Saar.'],
     ['Blaulicht', `Alle Polizeimeldungen mit Suche, Übersicht je Dienststelle, Fahndungen der anderen Bundesländer und Links zu den Presse- und Fahndungsportalen (${P.length} Stellen, davon ${feeds} mit Live-Feed).`],
     ['Webcams', 'Verkehrs- und Wetterkameras im Bereich und im Grenzraum Luxemburg, nach Dienststelle sortiert.'],
-    ['Verzeichnis', 'Rufnummern und Anschriften von Dienststellen, Behörden und Einrichtungen.'],
+    ['Verzeichnis', 'Rufnummern und Anschriften von Dienststellen, Behörden und Einrichtungen, dazu Abschlepp- und Bergungsdienste und Bestatter im ganzen PP Trier (Nummern auf der Webseite des Unternehmens geprüft, mit Prüfdatum).'],
     ['Taktik', 'Leitfäden für typische Einsatzlagen.'],
     ['Werkzeuge', 'Dienstbezirk-Karte, Buchstabiertafel, Kennzeichen, Rechner, Koordinaten, Lenkzeiten, Feiertage, Sonne und Mond, diese Hilfe. Eingaben werden nicht gespeichert.']]))}
   ${sec('lagebild', 'Lagebild: die Kacheln oben', dl([
@@ -7225,24 +7310,33 @@ function wzHilfe(el) {
     ['Dunkelheit', 'Sonnenuntergang, Sonnenaufgang und Dämmerung für den Ort der Dienststelle.'],
     ['Lagestufe', 'Grün, Gelb oder Rot nach festen Regeln. Gelb: Warnung des DWD in Orange, Pegel über Hochwassermarke I, Vollsperrung auf der Autobahn oder heute eine Veranstaltung mit mindestens 5.000 Besuchern. Rot: Unwetterwarnung (Rot oder Violett) oder Pegel über Hochwassermarke II. „Regeln“ zeigt, was gerade greift.'],
     ['Neueste Fahndungen und Meldungen', 'Kurzliste der Polizeimeldungen der letzten 14 Tage mit denselben Filtern wie unten.']]))}
-  ${sec('lagekarte', 'Lagekarte', `<p>Die Lagekarte zeigt Wetterwarnungen, Pegel, heutige Veranstaltungen und die Grenzen der Dienstbezirke. Jede Ebene lässt sich mit den Knöpfen über der Karte ein- und ausschalten. Verkehrsmeldungen stehen nicht mehr auf der Lagekarte, sondern in der Karte „Verkehr und Baustellen“ darunter.</p>
-    ${dl([['DWD-Warnungen', 'Warnflächen nach Gemeinden, Farbe nach Stufe (Gelb bis Violett). Ein Tipp auf die Karte fragt die Warnung an dieser Stelle ab.'], ['Pegel', 'Pegelstellen an Mosel und Saar mit aktuellem Wert beim Darüberfahren.'], ['Veranstaltungen heute', 'Punktgröße nach erwarteter Besucherzahl, Antippen zeigt Ort und Veranstalter.'], ['Dienstbezirke', 'Grenzen nach der Landesverordnung über die Organisation der Polizeipräsidien, der gewählte Bezirk ist orange.'], ['Darstellung und Größe', 'Weiß-Blau, Grau oder Dunkel; Standard, Groß oder Vollbild. Die Höhe lässt sich am unteren Rand ziehen.']])}`)}
+  ${sec('lagekarte', 'Lagekarte', `<p>Die Lagekarte zeigt immer das ganze PP Trier, auch wenn oben eine Dienststelle gewählt ist; deren Bezirk ist dann orange umrandet. Ebenen: Baustellen und Sperrungen des LBM, Wetterwarnungen, Pegel, heutige Veranstaltungen und die Grenzen der Dienstbezirke. Jede Ebene lässt sich mit den Knöpfen über der Karte ein- und ausschalten. Am Handy scrollt ein Finger die Seite, zwei Finger verschieben und zoomen die Karte.</p>
+    ${dl([['Baustellen und Sperrungen (LBM)', 'Die Originalzeichen des Landesbetriebs Mobilität aus dessen Kartendienst, auch außerhalb des PP: Warndreieck Arbeitsstelle, Dreieck mit Ampel Ampelregelung, rote Scheibe mit weißem Balken Einbahnregelung, roter Ring Vollsperrung, Ring mit Lkw Sperrung für Lkw. Grau bedeutet geplant, rote Linien zeigen den Verlauf. Ein Zeichen antippen zeigt Straße, Zeitraum und Beschreibung.'], ['DWD-Warnungen', 'Warnflächen nach Gemeinden, Farbe nach Stufe (Gelb bis Violett). Ein Tipp auf die Karte fragt die Warnung an dieser Stelle ab.'], ['Pegel', 'Pegelstellen an Mosel und Saar mit aktuellem Wert beim Darüberfahren.'], ['Veranstaltungen heute', 'Punktgröße nach erwarteter Besucherzahl, Antippen zeigt Ort und Veranstalter.'], ['Dienstbezirke', 'Grenzen nach der Landesverordnung über die Organisation der Polizeipräsidien, der gewählte Bezirk ist orange.'], ['Darstellung und Größe', 'Weiß-Blau, Grau oder Dunkel; Standard, Groß oder Vollbild. Die Höhe lässt sich am unteren Rand ziehen.']])}`)}
   ${sec('ticker', 'Lage-Ticker und Pressemeldungen: der Unterschied', `<p><b>Lage-Ticker:</b> eine einzige, knappe Zeitleiste aus allen Quellen, neueste oben. Er mischt Polizeimeldungen (nur Überschrift), Wetterwarnungen des DWD, frische Verkehrssperrungen und auffällige Pegeländerungen. Er dient dem schnellen Überblick „was ist gerade los“. Neue Einträge seit dem letzten Blick sind markiert.</p>
-    <p><b>Pressemeldungen:</b> nur Polizeimeldungen, dafür vollständig als Karten mit Foto, Textanfang, Dienststelle, Ort und Links zur Meldung und zum Newsroom, für die letzten 7 Tage. Routinemeldungen (Geschwindigkeitsmessungen, Prävention, Pressetermine) lassen sich ausblenden.</p>
-    <p><b>Fahndungen und Vermisste:</b> dieselben Quellen, aber nur Fahndungen, Vermisstensuchen, Zeugenaufrufe, Eigentümersuchen und Rücknahmen der letzten 14 Tage, zusätzlich „Deutschlandweit“.</p>`)}
+    <p><b>Pressemeldungen:</b> nur Polizeimeldungen, dafür vollständig als Karten mit Foto, Textanfang, Dienststelle, Ort und Links zur Meldung und zum Newsroom, für die letzten 7 Tage. Fahndungen, Vermisste, Rücknahmen und Zeugenaufrufe stehen nicht hier, sondern in „Fahndungen und Vermisste“. Routinemeldungen (Geschwindigkeitsmessungen, Prävention, Pressetermine) lassen sich ausblenden.</p>
+    <p><b>Fahndungen und Vermisste:</b> dieselben Quellen, aber nur Fahndungen, Vermisstensuchen, Zeugenaufrufe, Eigentümersuchen und Rücknahmen, zusätzlich „Deutschlandweit“. Zuerst die neuen, mit „Weitere“ bzw. „Alle anzeigen“ auch 100 und mehr. Fahndungen, Vermisste und Zeugenaufrufe ohne Rücknahme bleiben bis 60 Tage; ältere als 14 Tage stehen unten mit Hinweis.</p>`)}
+  ${sec('brisant', 'Brisante Fälle', `<p>Brisante Fälle sind Fahndungen und Vermisstenfälle, bei denen die Polizei in ihrer Meldung von einem schweren Verbrechen oder einer akuten Gefahr ausgeht. Ein Beispiel ist die 13-jährige Lisa T. aus Berlin-Marzahn (November 2026): erst Vermisstensuche, dann Mordkommission, dann Ermittlungen wegen eines Tötungsdelikts.</p>
+    <p><b>Wo sie stehen:</b> im roten Kasten oben in „Fahndungen und Vermisste“, aus allen Bereichen bis deutschlandweit und unabhängig vom gewählten Filter. In der Liste darunter tragen sie das Zeichen „brisant“.</p>
+    <p><b>Woran sie erkannt werden:</b> an Formulierungen, die die Polizei in solchen Fällen tatsächlich verwendet (geprüft an Meldungen der Polizei Berlin und Fahndungen des BKA):</p>
+    ${dl([['Mordkommission', 'Eine Mordkommission ermittelt oder nimmt Hinweise entgegen'], ['Kapitalverbrechen', 'Kapitalverbrechen oder Tötungsdelikt wird genannt'], ['Verbrechen nicht ausgeschlossen', 'Verbrechen nicht ausgeschlossen, Opfer eines Verbrechens'], ['nicht freiwillig entfernt', 'Die Polizei geht davon aus, dass die Person nicht freiwillig weg ist'], ['Entführung', 'Entführung wird genannt'], ['Belohnung', 'Eine Belohnung ist ausgesetzt'], ['hilflose Lage', 'Die Person befindet sich vermutlich in hilfloser Lage'], ['Kind vermisst', 'Vermisstes Kind oder Altersangabe bis 14 Jahre zusammen mit „vermisst“']])}
+    <p><b>Woher die Daten kommen:</b> aus den Pressemeldungen der Polizeien, die das Lagezentrum ohnehin abruft: Presseportal (news aktuell) mit den Polizeien aller Länder und der bundesweiten Liste „Öffentlichkeitsfahndungen“, Polizeimeldungen und Vermisstenseite der Polizei Berlin, Fahndungsportale Baden-Württemberg, Berlin und Brandenburg, Police Grand-Ducale. Jeder Eintrag nennt seine Quelle und führt zur Originalmeldung.</p>
+    <p><b>Grenzen:</b> Die Erkennung arbeitet mit Stichworten. Ein Fall ohne diese Worte wird nicht erkannt, und eine allgemeine Meldung über ein Tötungsdelikt erscheint ebenfalls. Eine zentrale, maschinenlesbare Liste solcher Fälle von LKA oder BKA gibt es nicht (Recherche 08.11.2026). Das BKA zeigt nur ausgewählte Fälle mit überregionalem Bezug als Webseite, meist Altfälle; der Kasten verlinkt diese Liste. Verbindlich ist immer die Meldung der zuständigen Polizei.</p>`)}
   ${sec('filter', 'Filter: Alle, PP Trier, PD Trier, PD Wittlich, Überregional, Deutschlandweit', `<p>Jede Meldung wird einem Bereich zugeordnet, zuerst über die Dienststelle in der Meldung, sonst über den Ort am Anfang des Textes („Bitburg (ots) –“).</p>
     ${dl([['PP Trier', esc(lbHilfeBereich('pp'))], ['PD Trier', esc(lbPdListe('pdtrier'))], ['PD Wittlich', esc(lbPdListe('pdwittlich'))], ['Überregional', esc(lbHilfeBereich('ueber')).replace(/\n/g, '<br>')], ['Deutschlandweit', esc(lbHilfeBereich('de'))], ['Alle', 'Alle Bereiche zusammen.']])}`)}
-  ${sec('arten', 'Meldungsarten', `<p>Die Art erkennt das Lagezentrum an Stichworten in der Überschrift. Das ist eine Sortierhilfe, keine Prüfung des Inhalts.</p>${dl(LB_ARTEN.map(a => [esc(a[1]), esc(LB_HILFE_ART[a[0]] || '')]))}`)}
-  ${sec('zeit', 'Zeiträume: warum 7, 14 und 120 Tage', dl([
+  ${sec('arten', 'Meldungsarten und brisante Fälle', `<p>Die Art erkennt das Lagezentrum an Stichworten in der Überschrift. Das ist eine Sortierhilfe, keine Prüfung des Inhalts.</p><p><b>Brisante Fälle</b> stehen in einem roten Kasten oben in „Fahndungen und Vermisste“, aus allen Bereichen bis deutschlandweit. Erkannt werden Formulierungen, die die Polizei in solchen Fällen verwendet: Mordkommission, Kapitalverbrechen oder Tötungsdelikt, Verbrechen nicht ausgeschlossen, nicht freiwillig entfernt, Entführung, Belohnung, hilflose Lage, vermisstes Kind bis 14 Jahre. Eine zentrale amtliche Liste solcher Fälle gibt es nicht. Das BKA zeigt nur ausgewählte Fälle mit überregionalem Bezug, meist Altfälle, ohne Feed; der Kasten verlinkt die BKA-Liste der Vermisstenfälle.</p>${dl(LB_ARTEN.map(a => [esc(a[1]), esc(LB_HILFE_ART[a[0]] || '')]))}`)}
+  ${sec('zeit', 'Zeiträume: warum 7, 14, 60 und 120 Tage', dl([
     ['Pressemeldungen: 7 Tage', 'Für das Tagesgeschäft reicht eine Woche, ältere Meldungen stehen im Bereich Blaulicht.'],
-    ['Fahndungen und Vermisste: höchstens 14 Tage', 'Die Grenze ist eine Festlegung im Lagezentrum, keine Vorgabe der Polizei. Eine Fahndung bleibt sichtbar, solange sie im Feed ihrer Pressestelle steht und nicht älter als 14 Tage ist. Die Feeds liefern je Stelle nur die neuesten 10 bis 15 Meldungen, bei viel beschäftigten Stellen sind das oft nur 2 bis 3 Tage. Wird eine Fahndung zurückgenommen oder ist die Person wieder da, verschwindet die ursprüngliche Meldung sofort.'],
-    ['Deutschlandweit: bis 120 Tage', 'Fahndungsportale der Länder führen laufende Fahndungen oft über Monate. Je Land werden die neuesten 8 gezeigt.'],
+    ['Fahndungen, Vermisste, Zeugenaufrufe: bis 60 Tage', 'Festlegung im Lagezentrum (Entscheidung vom 08.11.2026), keine Vorgabe der Polizei. Eine Fahndung verschwindet sofort, wenn die Pressestelle sie zurücknimmt oder die Person wieder da ist. Kommt keine Rücknahme, bleibt sie bis 60 Tage. Nach 14 Tagen rückt sie nach unten und trägt den Hinweis „älter als 14 Tage“, denn viele Fahndungen und Zeugenaufrufe werden nie förmlich zurückgenommen. Ob sie noch läuft, zeigt dann nur die Fahndungsseite oder die Pressestelle.'],
+    ['Warum nicht einfach „solange sie online ist“', 'Beim Presseportal bleibt eine Fahndung auch nach der Rücknahme mit Text abrufbar (Stichproben vom 08.11.2026). Aus den Feeds fällt eine Meldung heraus, sobald die Dienststelle 15 neuere veröffentlicht hat, bei aktiven Stellen nach 2 bis 3 Tagen. Beides sagt nichts darüber, ob die Fahndung noch läuft.'],
+    ['Server und GitHub', 'Auf dem Server sammelt das Abrufprogramm die Meldungen, dort stehen ältere wirklich bis 60 Tage. In der GitHub-Fassung liefern die Feeds nur die neuesten 10 je Stelle, ältere fehlen dort meist.'],
+    ['Eigentümersuchen, Rücknahmen: 14 Tage', 'Danach sind sie für die Lage nicht mehr wichtig.'],
+    ['Deutschlandweit: 60 bzw. 120 Tage', 'Aus Pressemeldungen der Länder bis 60 Tage. Aus Fahndungsportalen der Länder bis 120 Tage, denn dort stehen nur laufende Fahndungen. Je Land die neuesten 8.'],
     ['Lage-Ticker: 7 Tage', 'Neueste oben, ältere Einträge rutschen nach unten.']]))}
   ${sec('termine', 'Veranstaltungen: was erfasst ist', `<p>Der Kalender enthält ${ev.length} Veranstaltungen im Bereich des PP Trier${occ.length ? ` mit Terminen vom ${esc(fmtD(new Date(occ[0])))} bis ${esc(fmtD(new Date(occ[occ.length - 1])))}` : ''}: ${proPd('pdtrier')} im Bereich der PD Trier, ${proPd('pdwittlich')} im Bereich der PD Wittlich. Erfasst sind Veranstaltungen mit polizeilicher Bedeutung: viele Besucher, Verkehr, Alkohol, Sport mit Fanaufkommen, Umzüge und Märkte.</p>
     <p><b>Arten:</b> ${katL}.</p>
     <p><b>Besucherzahlen:</b> ${bel} Zahlen stammen vom Veranstalter oder aus der Presse, die übrigen sind vorsichtige Schätzungen und als „geschätzt“ gekennzeichnet. <b>Einstufung:</b> ${risk('hoch')} hoch, ${risk('mittel')} mittel, ${risk('niedrig')} niedrig, nach Besucherzahl und Art der Veranstaltung. Zu jeder Veranstaltung stehen die Quellen, z. B. Veranstalter, Gemeinde, Tourismus oder Presse.</p>
     <p>Der Kalender ist eine Sammlung aus öffentlichen Ankündigungen und nicht vollständig. Termine können sich ändern, maßgeblich ist immer der Veranstalter oder die Genehmigungsbehörde. In der Zeitleiste „Die nächsten 24 Stunden“ erscheinen die Termine des Tages als Punkte; Termine ohne Uhrzeit stehen darunter.</p>`)}
-  ${sec('verkehr', 'Verkehr und Baustellen', `<p>Alle Verkehrsdaten kommen vom Landesbetrieb Mobilität Rheinland-Pfalz (Mobilitätsatlas). Er führt die Arbeitsstellen und Sperrungen aller Straßen, auch der Autobahnen. Die Kachel „Verkehr im Bereich“ zählt sie, die Karte „Verkehr und Baustellen“ zeigt sie mit Verkehrslage (grün bis rot). Über die Knöpfe über der Karte springt man zu wichtigen Punkten, z. B. Grenze Wasserbillig oder AD Moseltal. Live-Meldungen wie Falschfahrer oder Unfälle aus dem Verkehrswarndienst sind noch nicht enthalten.</p>`)}
+  ${sec('verkehr', 'Verkehr und Baustellen', `<p>Alle Verkehrsdaten kommen vom Landesbetrieb Mobilität Rheinland-Pfalz (Mobilitätsatlas). Er führt die Arbeitsstellen und Sperrungen aller Straßen, auch der Autobahnen. Auf der Lagekarte stehen sie mit den Originalzeichen des LBM. Am Handy lässt sich die eingebettete Karte „Verkehr und Baustellen“ erst nach Antippen bedienen, damit man an ihr vorbeiscrollen kann; „Karte sperren“ schaltet das wieder ab. Die Kachel „Verkehr im Bereich“ zählt sie, die Karte „Verkehr und Baustellen“ zeigt sie mit Verkehrslage (grün bis rot). Über die Knöpfe über der Karte springt man zu wichtigen Punkten, z. B. Grenze Wasserbillig oder AD Moseltal. Live-Meldungen wie Falschfahrer oder Unfälle aus dem Verkehrswarndienst sind noch nicht enthalten.</p>`)}
   ${sec('wetter', 'Wetter, Warnungen und Pegel', `<p>Wetter und Warnungen stammen vom Deutschen Wetterdienst (über Bright Sky und die Kartendienste des DWD), die Pegel von PEGELONLINE der Wasserstraßen- und Schifffahrtsverwaltung des Bundes. Die Karte „Lage“ fasst Warnungen, Hochwasser und weitere amtliche Warnsysteme für den gewählten Bereich zusammen.</p>`)}
   ${sec('ds', 'Datenschutzhinweise', `<div id="hilfeBetreiber"></div>
     <p><b>Keine Cookies, keine Reichweitenmessung, kein Tracking.</b> Es gibt keine Anmeldung und keine Eingaben, die an einen Server gehen.</p>
@@ -7450,6 +7544,11 @@ async function lzServerFeeds() {
   return LZ_SRV.j;
 }
 // Erledigte und zurückgenommene Fahndungen: Ursprungsmeldung ausblenden, die Rücknahme selbst nur ohne Namen, Bild und Text zeigen
+// Brisante Fälle: Formulierungen, wie sie in amtlichen Meldungen vorkommen (Recherche 08.11.2026, Polizei Berlin, BKA)
+const BRISANT = [[/mordkommission/i, 'Mordkommission'], [/kapitalverbrechen|tötungsdelikt/i, 'Kapitalverbrechen'], [/(gewalt)?verbrechen[^.]{0,60}nicht (auszuschlie|ausgeschlossen)|nicht ausgeschlossen[^.]{0,60}verbrechen|opfer eines (gewalt|kapital)?verbrechens/i, 'Verbrechen nicht ausgeschlossen'],
+  [/nicht freiwillig/i, 'nicht freiwillig entfernt'], [/entführ/i, 'Entführung'], [/belohnung/i, 'Belohnung'], [/hilflose[nr]? lage/i, 'hilflose Lage'],
+  [/vermisste[sr]? kind|\b([1-9]|1[0-4])-jährige[rn]?\b[^.]{0,60}vermisst|vermisst[^.]{0,60}\b([1-9]|1[0-4])-jährige/i, 'Kind vermisst']];
+const brisant = f => { if (f.erl) return []; const t = (f.title || '') + ' ' + String(f.text || '').slice(0, 500); return BRISANT.filter(b => b[0].test(t)).map(b => b[1]); };
 const RUECK_S = /rücknahme|zurückgenommen|zurückgezogen|widerruf|löschung|erledigt|nicht mehr gesucht|n'est plus recherch/i;
 const RUECK_W = /wohlbehalten|wieder aufgetaucht|wieder da\b|zurückgekehrt|angetroffen|aufgefunden|identität geklärt|retrouv/i;
 const isRueck = f => !/eigentümer/i.test(f.title) && ((RUECK_S.test(f.title) && FBEZ.test(f.title + ' ' + String(f.text || '').slice(0, 300))) || (RUECK_W.test(f.title) && /vermiss|abgängig|fahndung|disparu/i.test(f.title)));
@@ -7603,7 +7702,7 @@ async function loadLaender() {
       }
       items.filter(it => !fd.only || (fd.only === 'be') === /berlin/i.test(it.by || '')).forEach(it => got.push({land: L.k, id: '', src: it.by || fd.n, nr: fd.nr, nrT: fd.t === 'f' ? 'Fahndungsportal' : 'Newsroom', fs: L.seite, ft: fd.t === 'f' ? 'Fahndung' : '', title: it.title.replace(/^\s*(POL-[A-Z0-9-]+:?\s*|[A-ZÄÖÜ]{2,6}-[A-ZÄÖÜ]{2,6}:\s*)/, ''), link: it.link, img: it.img, text: it.text, date: new Date(String(it.d).replace(' ', 'T') + 'Z'), fahndFeed: fd.t === 'f'}));
     }
-    let keep = got.filter(f => f.link && !isNaN(f.date) && !BEWERB_RE.test(f.title + ' ' + f.text) && !SPERRE.test(f.title + ' ' + f.text + ' ' + f.link) && (f.fahndFeed || LAND_RE.test(f.title)) && Date.now() - f.date.getTime() < 120 * 864e5);
+    let keep = got.filter(f => f.link && !isNaN(f.date) && !BEWERB_RE.test(f.title + ' ' + f.text) && !SPERRE.test(f.title + ' ' + f.text + ' ' + f.link) && (f.fahndFeed || LAND_RE.test(f.title) || brisant(f).length) && Date.now() - f.date.getTime() < (f.fahndFeed ? 120 : 60) * 864e5);
     if (!keep.length && typeof SNAPSHOT !== 'undefined' && SNAPSHOT.laender && SNAPSHOT.laender[L.k]) {
       keep = SNAPSHOT.laender[L.k].map(it => ({land: L.k, id: '', src: it.src, nr: it.nr, nrT: it.nrT, fs: L.seite, ft: it.ft || '', title: it.title, link: it.link, img: it.img, text: it.text, date: new Date(it.d.replace(' ', 'T') + 'Z')}));
       if (keep.length) snapUsed = true;
@@ -7669,7 +7768,7 @@ function ctCard(c) {
   (Array.isArray(c.mail) ? c.mail : (c.mail ? [c.mail] : [])).forEach(m => acts.push(`<a class="mailbtn" href="mailto:${esc(m)}">${ic('mail')}<span>${esc(m)}</span></a><button class="copy" data-copy="${esc(m)}" aria-label="Adresse kopieren">${ic('copy')}</button>`));
   const isDe = c.g !== 'grenz' && c.g !== 'ausland', intl = isDe ? tl.map(intlDE).filter(Boolean).slice(0, 2) : [];
   const intlLines = (intl.length ? `<div class="addr intl">Aus dem Ausland: ${intl.map(esc).join(' · ')}</div>` : '') + (c.g === 'grenz' && tl[0] && /^\+/.test(tl[0]) ? `<div class="addr intl">Aus Deutschland (Festnetz): ${esc(String(tl[0]).replace(/\+(\d+)/g, '00$1'))}. Vom Handy mit + wie oben.</div>` : '') + (c.cc ? `<div class="addr intl">Landesvorwahl <b>${esc(c.cc)}</b></div>` : '');
-  return `<div class="ct"><div><h4>${esc(c.n)}</h4>${c.sub ? `<div class="sub">${esc(c.sub)}</div>` : ''}</div>${c.adr ? `<div class="addr">${ic('pin').replace('class="ic "', 'class="ic" style="width:13px;height:13px;vertical-align:-2px;margin-right:4px"')}${esc(c.adr)}</div>` : ''}<div class="acts">${acts.join('')}</div>${intlLines}${c.fax ? `<div class="addr">Fax ${esc(c.fax)}</div>` : ''}</div>`;
+  return `<div class="ct"><div><h4>${esc(c.n)}</h4>${c.sub ? `<div class="sub">${esc(c.sub)}</div>` : ''}</div>${c.adr ? `<div class="addr">${ic('pin').replace('class="ic "', 'class="ic" style="width:13px;height:13px;vertical-align:-2px;margin-right:4px"')}${esc(c.adr)}</div>` : ''}<div class="acts">${acts.join('')}</div>${intlLines}${c.fax ? `<div class="addr">Fax ${esc(c.fax)}</div>` : ''}${c.web || c.quelle ? `<div class="addr">${c.web ? `<a href="${esc(c.web)}" target="_blank" rel="noopener noreferrer">Webseite</a>` : ''}${c.quelle ? ` · <a href="${esc(c.quelle)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}${c.geprueft ? ' · geprüft ' + esc(c.geprueft.split('-').reverse().join('.')) : ''}</div>` : ''}</div>`;
 }
 function renderDir() {
   const grp = DIR_GRUPPEN;
@@ -7679,7 +7778,7 @@ function renderDir() {
   let h = '', n = 0;
   grp.filter(g => !DIRS.g || DIRS.g === g[0]).forEach(g => {
     const items = DIR.filter(c => c.g === g[0] && match(c)); if (!items.length) return; n += items.length;
-    h += `<div class="dir-group"><h3>${esc(g[1])}</h3><div class="dir-grid">${items.map(ctCard).join('')}</div></div>`;
+    h += `<div class="dir-group"><h3>${esc(g[1])}</h3>${g[2] ? `<p class="small muted" style="margin:-4px 0 10px">${esc(g[2])}</p>` : ''}<div class="dir-grid">${items.map(ctCard).join('')}</div></div>`;
   });
   $('#dirList').innerHTML = h || `<div class="empty"><b>Kein Eintrag gefunden</b>Anderen Begriff versuchen, zum Beispiel Ortsname, Dienststelle oder „Kripo“.</div>`;
   $$('#dirList [data-copy]').forEach(b => b.addEventListener('click', () => copyText(b.dataset.copy, 'Kopiert')));
@@ -8213,7 +8312,9 @@ function init() {
   window.addEventListener('online', setOnline); window.addEventListener('offline', setOnline); $('#offline').classList.toggle('on', !S.online);
   $('#buildInfo').innerHTML = 'Datenstand Kataloge: November 2026 · Pressemeldungen und Fahndungen werden nicht im Browser gespeichert · <a href="#werkzeuge" data-hilfe-go="start">Hilfe</a> · <a href="#werkzeuge" data-hilfe-go="ds">Datenschutzhinweise</a>';
   tickClock(); setInterval(tickClock, 1000);
-  go(location.hash.slice(1) || 'cockpit', true);
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  go('cockpit'); // beim Aufruf immer Cockpit, ganz oben (Wunsch Marc, 08.11.2026)
+  window.addEventListener('pageshow', e => { if (e.persisted) go('cockpit'); });
   renderWeather(); renderAlerts(); renderPegel($('#pegelSel').value);
   refreshAll();
   try { lbInit(); } catch (e) { console.warn('Lagebild:', e); const r = $('#lbKpis'); if (r) r.innerHTML = '<div class="lb-empty lb-err">Das Lagebild konnte nicht starten: ' + esc(String(e && e.message || e)) + '. Bitte Seite neu laden (Strg+F5).</div>'; }
